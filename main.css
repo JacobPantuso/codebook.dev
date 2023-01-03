@@ -1,9 +1,19 @@
-html, body {
+html {
+    font-family: 'JetBrains Mono';font-size: 18px;
+}
+
+body {
     height: 100%;
     width: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
     background-color: #242424;
-    font-family: 'JetBrains Mono';font-size: 18px;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    color: grey;
+    font-size: 13px;
 }
 
 a {
@@ -81,12 +91,12 @@ img {
 .code-now-button {
     background-color: rgb(219, 34, 219);
     color: white;
-    padding-top: 0.2rem;
-    padding-bottom: 0.1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    border-radius: 1rem;
+    font-size: 0.5rem;
+    border-radius: 30px;
+    width: 30px;
+    height: 30px;
     border-color: transparent;
+    margin-top: 5px;
 }
 
 .code-now-button:hover {
@@ -151,6 +161,7 @@ img {
 .card-container:hover {
     transform: translateY(-10px);
 }
+
 .card-container:hover .card-text {
     background: -webkit-linear-gradient(180deg, #FF0000 -8.55%, #FF007A 17.53%, #C323FF 48.36%, #5E6CFF 79.18%, #00A3FF 105.26%);
     -webkit-background-clip: text;
@@ -165,4 +176,22 @@ img {
 
 .code-body {
     margin-left: 2rem;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: -webkit-linear-gradient(90deg, #FF0000 -8.55%, #FF007A 17.53%, #C323FF 48.36%, #5E6CFF 79.18%, #00A3FF 105.26%);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: -webkit-linear-gradient(90deg, #FF0000 -8.55%, #FF007A 17.53%, #C323FF 48.36%, #5E6CFF 79.18%, #00A3FF 105.26%);
+    border-radius: 10px;
 }
