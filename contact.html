@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>codebook.dev - Contact</title>
+    <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
+    <link rel="stylesheet" href="main.css">
+    <script src="main.js"></script>
+</head>
+
+<body class="support-container">
+    <div class="nav">
+        <ul>
+            <li class="links"><a href="index.html">Home</a></li>
+            <li class="links"><a href="about.html">About</a></li>
+            <li class="links"><a style="color: #44A5EC; font-weight: 500;" href="support-portal.html">Support</a></li>
+        </ul>
+    </div>
+    <div class="header">
+        <h1 class="color support-header">Contact</h1>
+    </div>
+    <div class="support-info">
+        <p style="width: 40vw; color:white;">We're here to help. Get in contact with a <span
+                class="color">codebook.dev</span> agent by filling out the form below.
+        </p>
+    </div>
+    <div>
+        <form class="support-form" id="contact" method="POST" onchange="checkContact();">
+            <h3 class="color">Name() {</h3>
+            <input id="name" type="text" placeholder="Theodore Roosevelt..">
+            <h3 class="color">Problem() {</h3>
+            <select id="problem-type">
+                <option selected disabled value="">Select a Problem</option>
+                <option value="General Inquiry">General Inquiry</option>
+                <option value="Technical Support">Technical Support</option>
+                <option value="Report a Bug">Report a Bug</option>
+            </select>
+            <h3 class="color">Body() {</h3>
+            <textarea class="support-body-box" placeholder="There seems to be a problem with my code!"
+                id="problem"></textarea><br><br>
+            <button id="submit">Submit</button>
+        </form>
+    </div>
+    <footer style="bottom: 0;">
+        <p>&copy 2022-23 <span class="color">codebook.dev</span></p>
+    </footer>
+</body>
+
+</html>

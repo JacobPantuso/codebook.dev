@@ -1,14 +1,12 @@
-(function(timer) {
-    window.addEventListener('load', function() {
-      var el = document.querySelector('.inner');
-      el.addEventListener('scroll', function(e) {
-      (function(el){
-        el.classList.add('scroll');
-        clearTimeout(timer);
-        timer = setTimeout(function() {
-          el.classList.remove('scroll');
-        }, 100);    
-      })(el);
-      })
-    })
-  })();
+// when all elements in contact are filled out, set the submit button to green
+function checkContact() {
+    var name = document.getElementById("name").value;
+    var problem = document.getElementById("problem").value;
+    var problem_type = document.getElementById("problem_type").value;
+    var submit = document.getElementById("submit");
+    if (name != "" && problem_type != "Select a Problem" && problem != "") {
+        submit.style.backgroundColor = "#4CAF50";
+        submit.style.pointerEvents = "all";
+        console.log("green");
+    }
+}
