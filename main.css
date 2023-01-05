@@ -311,3 +311,21 @@ option {
 .bigger {
     font-size: 20px;
 }
+
+/* Landing Page */
+
+.landing-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.landing-nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.landing-nav a,
+.landing-nav h2 {
+    font-size: 14px;
+    padding: 0;
+}
