@@ -42,7 +42,7 @@ form {
 
 img {
     margin-top: 50px;
-    margin-right: 4rem;
+    margin-bottom: 50px;
     width: 750px;
 }
 
@@ -71,7 +71,11 @@ img {
 .nav a {
     text-decoration: none;
     font-weight: 300;
-    color: white;
+}
+
+.accent {
+    color: #44A5EC; 
+    font-weight: 500;
 }
 
 .name {
@@ -91,7 +95,7 @@ img {
 }
 
 .code-now-button {
-    background-color: rgb(219, 34, 219);
+    background-color: red;
     color: white;
     font-size: 0.5rem;
     border-radius: 30px;
@@ -294,4 +298,16 @@ option {
 
 .support-form h3 {
     margin-top: 1rem;
+}
+
+/* About Page */
+
+.about-text {
+    color: white;
+    text-align: center;
+    font-size: 16px;
+}
+
+.bigger {
+    font-size: 20px;
 }
