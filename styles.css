@@ -1,0 +1,230 @@
+/* Get Started */
+
+/* grey background over top whole webpage */
+.overlay {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    top:0; bottom:0; left:0; right:0;
+    z-index: 2;
+    background-color: #343434;
+}
+
+.get-started-card {
+    margin: auto;
+    width: 50%;
+    height: 55%;
+    background-color: #1c1c1c9e;
+    padding: 2.5rem 2.5rem;
+    border-radius: 50px;
+    color: white;
+    text-align: center;
+    transition: transform 250ms;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.descriptions {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+}
+
+.descriptions h4 {
+    margin-bottom: 0;
+}
+
+.box-desc {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 33%;
+    margin-right: 20px;
+}
+
+.box-desc-img {
+    width: 80px;
+    margin: auto;
+    margin-bottom: 0px;
+}
+
+.desc-p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: center;
+}
+
+.continue-button {
+    width: 149px;
+    height: 25px;
+    background: linear-gradient(270deg, rgba(255, 0, 216, 0.76) -19.13%, #FF40A7 2.29%, #02A4FF 43.13%, #5E97FF 74.59%, #00D1FF 109.4%);
+    border-radius: 18px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Landing Page */
+
+h1 {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 0;
+    color: white;
+}
+
+h2 {
+    font-size: 16px;
+    color: white;
+}
+
+p { 
+    font-size: 14px;
+    color: white;
+}
+
+.landing-page {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.landing-nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.bar-icon {
+    color:white; 
+    padding-top: 4px; 
+    margin-left: 4px;
+}
+
+.landing-nav a {
+    font-size: 14px;
+    padding: 0;
+}
+
+.landing-nav h2 {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0;
+    padding-top: 5px;
+    margin-left: auto; 
+    margin-right: 1.3rem;
+}
+
+.landing-page-container {
+    display: flex;
+    height: 94vh;
+}
+
+.landing-toolbar {
+    display: flex;
+    flex-direction: column;
+    min-width: 2rem;
+    margin: 0;
+    padding: 0;
+    gap: 4px;
+}
+
+.landing-toolbar i {
+    color: white;
+    margin-left: 2px;
+    margin-top: 1.4rem;
+}
+
+#editor { 
+    background: rgb(60, 60, 60);
+    max-width: 55rem;
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+    flex: 2;
+    display: flex;
+}
+
+.landing-info-terminal-container {
+    display: flex;
+    flex-direction: column;
+    min-width: auto;
+    margin: 0;
+    margin-top: 10px;
+    margin-left: 14px;
+    margin-right: 23px;
+    flex: 1;
+}
+
+.landing-info {
+    background: rgb(60, 60, 60);
+    flex: 0.5;
+    display: flex;
+    padding: 1rem 1rem;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.landing-info-button {
+    border-radius: 8px;
+    border: transparent;
+    color: white;
+    font-weight: 800;
+    background-color: rgb(220, 78, 255);
+    margin: 0 10rem;
+}
+
+.landing-info-button:hover {
+    background-color: rgb(181, 214, 115);
+}
+
+#terminal {
+    background: rgb(20, 20, 20);
+    caret-color: white;
+    color: white;
+    margin-top: 14px;
+    flex: 1;
+    display: flex;
+}
+
+.term-blue {
+    color: #48A7FF;
+}
+
+#code-window-text {
+    resize: none;
+    flex: 1;
+    padding-top: 8px;
+    padding-left: 1rem;
+    font-size: 18px;
+    color: white;
+    background: transparent;
+    border-color: rgb(60, 60, 60);
+}
+
+#code-window-text:focus {
+    outline:none;
+    border-color: rgb(242, 99, 242);
+    box-shadow:0 0 6px rgb(220, 175, 182);
+}
+
+#terminal-text {
+    resize: none;
+    flex: 1;
+    padding-top: 8px;
+    padding-left: 1rem;
+    color: white;
+    background: transparent;
+    font-size: 16px;
+    border-color: rgb(20, 20, 20);
+}
+
+#terminal-text:focus {
+    outline:none;
+    border-color: rgb(242, 99, 242);
+    box-shadow:0 0 6px rgb(220, 175, 182);
+}

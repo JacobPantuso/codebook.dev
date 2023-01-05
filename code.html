@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>codebook.dev - Code</title>
+    <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/f7c8be4779.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js"></script>
+</head>
+
+<body style="overflow: hidden;" class="landing-page">
+    <div class="landing-nav">
+        <i class="bar-icon fa-solid fa-bars"></i>
+        <a style="font-size: 18px;" href="index.html" class="color">Codebook.dev</a>
+        <a style="padding-top: 4px;" href="index.html" style="margin-left: 1rem;">
+            <i class="color fa-sharp fa-solid fa-code" style="margin-right:8px;"></i>Documentation
+        </a>
+        <h2>Version 1.0 ALPHA</h2>
+    </div>
+    <div class="landing-page-container">
+        <div class="landing-toolbar">
+            <i style="margin-left: 3px;" class="fa-solid fa-gear"></i>
+            <i class="fa-solid fa-house-chimney-user"></i>
+        </div>
+        <div id="editor"></div>
+        <!--<div class="landing-code-window">
+            <textarea id="code-window-text" placeholder="> Enter your code here! _"></textarea><br><br>
+        </div>-->
+        <div class="landing-info-terminal-container">
+            <div id="info" class="landing-info">
+                <h1 class="color">Hey There! <i class="fa-solid fa-hands-clapping"></i></i></h1>
+                <h2 class="color">How To Use:</h2>
+                <p style="color:rgb(236, 236, 236);">Begin typing and the program will automatically swap the compiler
+                    to the language
+                    your coding in! At
+                    the top, you can quickly access the documentation for the selected language to help with any
+                    confusion!
+                </p>
+                <h2 class="color">Editor Tips;</h2>
+                <p style="color:rgb(236, 236, 236);">Oh no, it looks like your compilation failed. You may want to check
+                    if you inputted the file name
+                    correctly or you don’t have any syntactical errors in your file.
+                </p>
+                <button onclick="hideInfoPopup()" class="landing-info-button"><i
+                        class="fa-solid fa-circle-xmark"></i></button>
+            </div>
+            <div id="terminal"><span class="term-blue">▶ user.io@shell: ~$</span></div>
+        </div>
+    </div>
+</body>
+<script src="/editor-src/src/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    var terminal = ace.edit("terminal");
+    terminal.renderer.setShowGutter(false);
+    terminal.renderer.setHighlightGutterLine(false);
+    terminal.$mouseHandler.$focusWaitTimout = 0;
+    terminal.setTheme("ace/theme/terminal");
+    editor.setTheme("ace/theme/dracula");
+    editor.session.setMode("ace/mode/python");
+</script>
+</html>

@@ -16,12 +16,22 @@ function checkSubmit() {
     if (name != "") {
         submit.style.backgroundColor = "#4CAF50";
         submit.style.pointerEvents = "all";
+        submit.removeAttribute("disabled");
     } else {
         submit.style.backgroundColor = "red";
         submit.style.pointerEvents = "none";
     }
 }
 
-if (window.location.href.match('wip.html') != null) {
-    console.log("all good");
-   }
+function hideInfoPopup() {
+    var info = document.getElementById("info");
+    info.style.display = "none";
+    var terminal = document.getElementById("terminal");
+    terminal.style.marginTop = "0px";
+}
+
+if (window.location.href.match('get-started.html') != null) {
+    var urlParams = new URLSearchParams(window.location.search);
+    var display = urlParams.get('name');
+    document.getElementById("name").innerHTML = "Hey, " + display + " 👋🏼";
+}

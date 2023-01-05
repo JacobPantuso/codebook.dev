@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>codebook.dev - Get Started</title>
+    <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/f7c8be4779.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body style="overflow: hidden;">
+    <div class="get-started-container">
+        <div class="overlay">
+            <div class="get-started-card">
+                <h3 id="name" class="card-text"></h3>
+                <p>welcome to <span class="color">codebook.dev</span></p>
+                <div class="descriptions">
+                    <div class="box-desc">
+                        <img src="images/language.png" class="box-desc-img">
+                        <h4>over 10+ languages available</h4>
+                        <p class="desc-p">
+                            with over 10+ languages available (and more coming) you have the freedom to code in any language you’d like. programming paradise, right?
+                        </p>
+                    </div>
+                    <div class="box-desc">
+                        <img src="images/brush.png" class="box-desc-img" style="width: 63px;">
+                        <h4><span class="color">programming</span> just got personal</h4>
+                        <p class="desc-p">
+                            you can now completely personalize your editor and compiler for a truly personal experience.<br><br>
+                        </p>
+                    </div>
+                    <div class="box-desc">
+                        <img src="images/lock.png" class="box-desc-img" style="width: 40px;">
+                        <h4>your information is <span class="color">secure</span></h4>
+                        <p class="desc-p">
+                            your personal information is never shared with any third-party platforms while you use codebook. Your information, stays your information.                        </p>
+                    </div>
+                </div>
+                <a href="code.html"><button class="continue-button">Get Started <i class="fa-solid fa-circle-arrow-right"></i></button></a>
+            </div>
+        </div>
+        <div class="landing-page">
+            <div class="landing-nav">
+                <i class="bar-icon fa-solid fa-bars"></i>
+                <a style="font-size: 18px;" href="index.html" class="color">Codebook.dev</a>
+                <a style="padding-top: 4px;" href="index.html" style="margin-left: 1rem;">
+                    <i class="color fa-sharp fa-solid fa-code" style="margin-right:8px;"></i>Documentation
+                </a>
+                <h2>Version 1.0 ALPHA</h2>
+            </div>
+            <div class="landing-page-container">
+                <div class="landing-toolbar">
+                    <i style="margin-left: 3px;" class="fa-solid fa-gear"></i>
+                    <i class="fa-solid fa-house-chimney-user"></i>
+                </div>
+                <div class="landing-code-window">
+                    <textarea id="code-window-text" placeholder="> Enter your code here! _"></textarea><br><br>
+                </div>
+                <div class="landing-info-terminal-container">
+                    <div id="info" class="landing-info">
+                        <h1 class="color">Hey There! <i class="fa-solid fa-hands-clapping"></i></i></h1>
+                        <h2 class="color">How To Use:</h2>
+                        <p style="color:rgb(236, 236, 236);">Begin typing and the program will automatically swap the compiler
+                            to the language
+                            your coding in! At
+                            the top, you can quickly access the documentation for the selected language to help with any
+                            confusion!
+                        </p>
+                        <h2 class="color">Editor Tips;</h2>
+                        <p style="color:rgb(236, 236, 236);">Oh no, it looks like your compilation failed. You may want to check
+                            if you inputted the file name
+                            correctly or you don’t have any syntactical errors in your file.
+                        </p>
+                        <button onclick="hideInfoPopup()" class="landing-info-button"><i
+                                class="fa-solid fa-circle-xmark"></i></button>
+                    </div>
+                    <div id="terminal" class="landing-terminal">
+                        <textarea id="terminal-text"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="main.js"></script>
+</html>
