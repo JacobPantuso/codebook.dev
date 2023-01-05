@@ -324,8 +324,43 @@ option {
     gap: 1rem;
 }
 
+.bar-icon {
+    color:white; 
+    padding-top: 4px; 
+    margin-left: 4px;
+}
+
 .landing-nav a,
 .landing-nav h2 {
     font-size: 14px;
+    padding: 0;
+}
+
+.landing-page-container {
+    display: flex;
+}
+
+.landing-toolbar {
+    display: flex;
+    flex-direction: column;
+    min-width: 2rem;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    gap: 4px;
+}
+
+.landing-toolbar i {
+    color: white;
+    margin-left: 2px;
+    margin-top: 1.4rem;
+}
+
+.landing-code-window {
+    background: gray;
+    min-width: 50rem;
+    min-height: 100vh;
+    margin: 0;
+    margin-top: 10px;
     padding: 0;
 }
