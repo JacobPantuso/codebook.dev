@@ -15,7 +15,11 @@
 
 <body style="overflow: hidden;" class="landing-page">
     <div class="landing-nav">
-        <i class="bar-icon fa-solid fa-bars"></i>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i style="margin-left: 0px;" class="bar-icon fa-solid fa-bars btnicon"></i>
+            </button>
+        </div>
         <a style="font-size: 18px;" href="index.html" class="color">Codebook.dev</a>
         <a style="padding-top: 4px;" href="index.html" style="margin-left: 1rem;">
             <i class="color fa-sharp fa-solid fa-code" style="margin-right:8px;"></i>Documentation
@@ -24,8 +28,20 @@
     </div>
     <div class="landing-page-container">
         <div class="landing-toolbar">
-            <i style="margin-left: 3px;" class="fa-solid fa-gear"></i>
-            <i class="fa-solid fa-house-chimney-user"></i>
+            <div class="dropdown">
+                <button class="dropbtn toolbar-btn"><i class="fa-solid fa-gear btnicon"></i></button>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn toolbar-btn"><i style="margin-left:1px;" class="fa-solid fa-house-chimney-user btnicon"></i></button>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn toolbar-btn"><i class="fa-solid fa-image btnicon"></i></button>
+                <div id="theme-dropdown" class="dropdown-content" style="display:none;">
+                    <button>Theme 1</button>
+                    <button>Theme 2</button>
+                    <button>Theme 3</button>
+                </div>
+            </div>
         </div>
         <div id="editor"></div>
         <!--<div class="landing-code-window">
