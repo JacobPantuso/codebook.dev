@@ -1,7 +1,17 @@
-# Code.io
-## Description
+<p align=center><img src="https://github.com/C-Teo/Code.io/blob/main/images/logo.png?raw=true"></p>
+<hr>
 
-Will update later.
+## Description
+Our mission at **codebook.dev** is to make coding **online** easier.
+We do this by allowing users to code and execute the written code all within their browser window.<br>
+
+**Here is a look at how it works:**
+
+1. Your code is sent to a secure server which processes your code. 
+2. That code is then executed on the secure server
+3. The output is then sent back to your browser. <br>
+
+*Your code or personal information is never stored on the server.*
 
 ## Table of Contents
 
