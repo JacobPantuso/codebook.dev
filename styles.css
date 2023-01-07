@@ -130,7 +130,6 @@ p {
     min-width: 2rem;
     margin: 0;
     padding: 0;
-    gap: 4px;
 }
 
 .landing-toolbar i {
@@ -139,11 +138,30 @@ p {
     margin-top: 1.4rem;
 }
 
+.dropbtn {
+    background: transparent;
+    border: hidden;
+    width: 3rem;
+    height: 2rem;
+    font-size: 18px;
+    margin-left: -8px;
+    border-radius: 0.5rem;
+}
+
+.btnicon {
+    display: inline;
+    margin-right: 6px;
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+    background-color: #404040;
+}
+
 #editor { 
     background: rgb(60, 60, 60);
     max-width: 55rem;
     margin: 0;
-    margin-top: 10px;
     padding: 0;
     flex: 2;
     display: flex;
@@ -206,12 +224,6 @@ p {
     border-color: rgb(60, 60, 60);
 }
 
-#code-window-text:focus {
-    outline:none;
-    border-color: rgb(242, 99, 242);
-    box-shadow:0 0 6px rgb(220, 175, 182);
-}
-
 #terminal-text {
     resize: none;
     flex: 1;
@@ -221,10 +233,4 @@ p {
     background: transparent;
     font-size: 16px;
     border-color: rgb(20, 20, 20);
-}
-
-#terminal-text:focus {
-    outline:none;
-    border-color: rgb(242, 99, 242);
-    box-shadow:0 0 6px rgb(220, 175, 182);
 }
