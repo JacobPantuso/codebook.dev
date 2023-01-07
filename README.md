@@ -2,16 +2,16 @@
 <hr>
 
 ## Description
-our mission at **codebook.dev** is to make coding **online** easier.
-we do this by allowing users to code and execute the written code all within their browser window.<br>
+Our mission at **codebook.dev** is to make coding **online** easier.
+We do this by allowing users to code and execute the written code all within their browser window.<br>
 
-**here is a look at how it works:**
+**Here is a look at how it works:**
 
-1. your code is sent to a secure server which processes your code. 
-2. that code is then executed on the secure server
-3. the output is then sent back to your browser. <br>
+1. Your code is sent to a secure server which processes your code. 
+2. That code is then executed on the secure server
+3. The output is then sent back to your browser. <br>
 
-*your code or personal information is never stored on the server.*
+*Your code or personal information is never stored on the server.*
 
 ## Table of Contents
 
