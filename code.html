@@ -13,60 +13,97 @@
     <script src="main.js"></script>
 </head>
 
-<body style="overflow: hidden;" class="landing-page">
-    <div class="landing-nav">
-        <div class="dropdown">
-            <button class="dropbtn">
-                <i style="margin-left: 0px;" class="bar-icon fa-solid fa-bars btnicon"></i>
-            </button>
+<body>
+    <div class="main">
+        <div id="language" class="language-selection">
+            <div class="selection-card">
+                <h3>Language Selection</h3>
+                <h5 style="margin-top: 15px;">Selected Language: <span class="accent">JavaScript</span></h5>
+                <h5>Supported Languages:
+                    <input id="myInput" type="text" class="language-search-bar" placeholder="Search Languages"
+                        onkeyup="search()">
+                    <div class="language-list">
+                        <ul id="lang-search">
+                            <li><a href="#">ASP</a></li>
+                            <li><a href="#">C</a></li>
+                            <li><a href="#">C++</a></li>
+                            <li><a href="#">CSS</a></li>
+                            <li><a href="#">HTML</a></li>
+                            <li><a href="#">Java</a></li>
+                            <li><a href="#">JavaScript</a></li>
+                            <li><a href="#">Python</a></li>
+                            <li><a href="#">Swift</a></li>
+                        </ul>
+                    </div>
+                </h5>
+            </div>
         </div>
-        <a style="font-size: 18px;" href="index.html" class="color">Codebook.dev</a>
-        <a style="padding-top: 4px;" href="index.html" style="margin-left: 1rem;">
-            <i class="color fa-sharp fa-solid fa-code" style="margin-right:8px;"></i>Documentation
-        </a>
-        <h2>Version 1.0 ALPHA</h2>
     </div>
-    <div class="landing-page-container">
+    <div class=" landing-page">
         <div class="landing-toolbar">
-            <div class="dropdown">
-                <button class="dropbtn toolbar-btn"><i class="fa-solid fa-gear btnicon"></i></button>
+            <a><i class="fa-solid fa-bars-staggered"></i></a>
+            <div class="tooltip">
+                <a><i class="fa-solid fa-gear"></i></a>
+                <span class="tooltiptext">Settings</span>
             </div>
-            <div class="dropdown">
-                <button class="dropbtn toolbar-btn"><i style="margin-left:1px;" class="fa-solid fa-house-chimney-user btnicon"></i></button>
+            <div class="tooltip">
+                <a onclick="toggleSetting('language')"><i class="fa-solid fa-file-code"></i></a>
+                <span id="lang-tooltip" class="tooltiptext">Language</span>
             </div>
-            <div class="dropdown">
-                <button class="dropbtn toolbar-btn"><i class="fa-solid fa-image btnicon"></i></button>
-                <div id="theme-dropdown" class="dropdown-content" style="display:none;">
-                    <button>Theme 1</button>
-                    <button>Theme 2</button>
-                    <button>Theme 3</button>
+            <div class="tooltip">
+                <a><i class="fa-solid fa-brush"></i></a>
+                <span class="tooltiptext">Themes</span>
+            </div>
+            <div style="margin-top: auto;" class=" tooltip">
+                <a><i class="fa-solid fa-circle-info"></i></a>
+                <span class="tooltiptext">v1.0 ALPHA</span>
+            </div>
+        </div>
+        <div class="code">
+            <div class="landing-nav">
+                <a style="font-size: 18px;" href="index.html" class="color">Codebook.dev</a>
+                <a style="padding-top: 4px;" href="index.html" style="margin-left: 1rem;">
+                    <i class="color fa-sharp fa-solid fa-code" style="margin-right:8px;"></i>Documentation
+                </a>
+                <a class="run-btn"><i class="fa-solid fa-play"></i> Run</a>
+            </div>
+            <div class="landing-page-container">
+                <div id="editor"></div>
+                <!--<div class="landing-code-window">
+                    <textarea id="code-window-text" placeholder="> Enter your code here! _"></textarea><br><br>
+                </div>-->
+                <div class="landing-info-terminal-container">
+                    <div id="info" class="landing-info">
+                        <h1 class="color">Hey There! <i class="fa-solid fa-hands-clapping"></i></i></h1>
+                        <h2 class="color">How To Use:</h2>
+                        <p style="color:rgb(236, 236, 236);">Begin typing and the program will
+                            automatically swap
+                            the
+                            compiler
+                            to the language
+                            your coding in! At
+                            the top, you can quickly access the documentation for the selected language
+                            to help with
+                            any
+                            confusion!
+                        </p>
+                        <h2 class="color">Editor Tips;</h2>
+                        <p style="color:rgb(236, 236, 236);">Oh no, it looks like your compilation
+                            failed. You may
+                            want
+                            to
+                            check
+                            if you inputted the file name
+                            correctly or you don’t have any syntactical errors in your file.
+                        </p>
+                        <button onclick="hideInfoPopup()" class="landing-info-button"><i
+                                class="fa-solid fa-circle-xmark"></i></button>
+                    </div>
+                    <div id="terminal"><span class="term-blue">▶ user.io@shell: ~$</span></div>
                 </div>
             </div>
         </div>
-        <div id="editor"></div>
-        <!--<div class="landing-code-window">
-            <textarea id="code-window-text" placeholder="> Enter your code here! _"></textarea><br><br>
-        </div>-->
-        <div class="landing-info-terminal-container">
-            <div id="info" class="landing-info">
-                <h1 class="color">Hey There! <i class="fa-solid fa-hands-clapping"></i></i></h1>
-                <h2 class="color">How To Use:</h2>
-                <p style="color:rgb(236, 236, 236);">Begin typing and the program will automatically swap the compiler
-                    to the language
-                    your coding in! At
-                    the top, you can quickly access the documentation for the selected language to help with any
-                    confusion!
-                </p>
-                <h2 class="color">Editor Tips;</h2>
-                <p style="color:rgb(236, 236, 236);">Oh no, it looks like your compilation failed. You may want to check
-                    if you inputted the file name
-                    correctly or you don’t have any syntactical errors in your file.
-                </p>
-                <button onclick="hideInfoPopup()" class="landing-info-button"><i
-                        class="fa-solid fa-circle-xmark"></i></button>
-            </div>
-            <div id="terminal"><span class="term-blue">▶ user.io@shell: ~$</span></div>
-        </div>
+    </div>
     </div>
 </body>
 <script src="/editor-src/src/ace.js" type="text/javascript" charset="utf-8"></script>
@@ -78,6 +115,7 @@
     terminal.$mouseHandler.$focusWaitTimout = 0;
     terminal.setTheme("ace/theme/terminal");
     editor.setTheme("ace/theme/dracula");
-    editor.session.setMode("ace/mode/python");
+    editor.session.setMode("ace/mode/javascript");
 </script>
+
 </html>

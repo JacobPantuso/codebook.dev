@@ -30,6 +30,38 @@ function hideInfoPopup() {
     terminal.style.marginTop = "0px";
 }
 
+function search() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("lang-search");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+function toggleSetting(name) {
+    if (name == "language") {
+        var language = document.getElementById("language");
+        var tooltip = document.getElementById("lang-tooltip");
+        var icon = document.getElementsByClassName("fa-solid fa-file-code")[0];
+        if (language.style.display == "none") {
+            language.style.display = "flex";
+            icon.setAttribute('id', 'icon-solid-click');
+        } else {
+            language.style.display = "none";
+            icon.removeAttribute('id');
+        }
+    }
+}
+
 if (window.location.href.match('get-started.html') != null) {
     var urlParams = new URLSearchParams(window.location.search);
     var display = urlParams.get('name');

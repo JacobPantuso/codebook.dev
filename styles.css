@@ -1,6 +1,9 @@
 /* Get Started */
 
 /* grey background over top whole webpage */
+body {
+    overflow: hidden;
+}
 .overlay {
     display: flex;
     position: absolute;
@@ -10,6 +13,10 @@
     top:0; bottom:0; left:0; right:0;
     z-index: 2;
     background-color: #343434;
+}
+
+.code {
+    width: 100%;
 }
 
 .get-started-card {
@@ -89,25 +96,24 @@ p {
 
 .landing-page {
     display: flex;
+    overflow: hidden;
     position: relative;
-    flex-direction: column;
     z-index: 1;
 }
 
 .landing-nav {
     display: flex;
+    padding-bottom: 10px;
     gap: 1rem;
 }
 
 .bar-icon {
     color:white; 
-    padding-top: 4px; 
-    margin-left: 4px;
+    margin-top: 4px; 
 }
 
 .landing-nav a {
     font-size: 14px;
-    padding: 0;
 }
 
 .landing-nav h2 {
@@ -117,6 +123,22 @@ p {
     padding-top: 5px;
     margin-left: auto; 
     margin-right: 1.3rem;
+}
+
+.run-btn {
+    background-color: rgb(26, 189, 26);
+    border-radius: 5px;
+    padding: 3px;
+    width: 80px;
+    margin-left: auto;
+    margin-right: 1.3rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+}
+
+.run-btn:hover {
+    cursor: pointer;
+    background-color: rgb(18, 121, 18);
 }
 
 .landing-page-container {
@@ -129,33 +151,66 @@ p {
     flex-direction: column;
     min-width: 2rem;
     margin: 0;
-    padding: 0;
+    padding-right: 8px;
 }
 
-.landing-toolbar i {
+.landing-toolbar a {
     color: white;
-    margin-left: 2px;
-    margin-top: 1.4rem;
+    text-align: center;
+    margin-bottom: 25px;
 }
 
-.dropbtn {
-    background: transparent;
-    border: hidden;
-    width: 3rem;
-    height: 2rem;
-    font-size: 18px;
-    margin-left: -8px;
-    border-radius: 0.5rem;
+.landing-toolbar a:hover {
+    background: -webkit-linear-gradient(180deg, #FF0000 -8.55%, #FF007A 17.53%, #C323FF 48.36%, #5E6CFF 79.18%, #00A3FF 105.26%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
 }
 
-.btnicon {
-    display: inline;
-    margin-right: 6px;
+#icon-solid-click {
+    background: -webkit-linear-gradient(180deg, #FF0000 -8.55%, #FF007A 17.53%, #C323FF 48.36%, #5E6CFF 79.18%, #00A3FF 105.26%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.dropbtn:hover,
-.dropbtn:focus {
-    background-color: #404040;
+.tooltip {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 25px;
+    z-index: 5;
+    text-align: center;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgb(26, 25, 25);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    font-size: 13px;
+    position: absolute;
+    z-index: 1;
+    top: -3px;
+    left: 110%;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent rgb(26, 25, 25) transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }
 
 #editor { 
@@ -172,7 +227,6 @@ p {
     flex-direction: column;
     min-width: auto;
     margin: 0;
-    margin-top: 10px;
     margin-left: 14px;
     margin-right: 23px;
     flex: 1;
@@ -188,12 +242,14 @@ p {
 }
 
 .landing-info-button {
+    max-width: 5rem;
     border-radius: 8px;
     border: transparent;
     color: white;
     font-weight: 800;
     background-color: rgb(220, 78, 255);
     margin: 0 10rem;
+    flex: 1;
 }
 
 .landing-info-button:hover {
@@ -233,4 +289,71 @@ p {
     background: transparent;
     font-size: 16px;
     border-color: rgb(20, 20, 20);
+}
+
+/* Language Selection Menu */
+
+.language-selection {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0; bottom:0; left:52px; right:0;
+    z-index: 2;
+    background-color: transparent;
+}
+
+.selection-card {
+    margin-top: 50px;
+    margin-left: 10px;
+    width: 15%;
+    height: 35%;
+    background-color: #1c1c1c;
+    padding: 2rem 2rem;
+    border-radius: 25px;
+    color: white;
+    text-align: center;
+    transition: transform 250ms;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.selection-card h3 {
+    font-size: 17px;
+}
+
+.selection-card:hover {
+    transform: scale(1.05);
+}
+
+.language-search-bar {
+    margin-top: 6px;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+    background: transparent;
+    text-align: center;
+    outline: none;
+    color: white;
+}
+
+.language-list {
+    height: 100px;
+    width: 120px;
+    overflow: auto;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.language-list::-webkit-scrollbar {
+    display: none;
+}
+
+#lang-search {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#lang-search li a {
+    text-decoration: none;
 }
