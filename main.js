@@ -48,21 +48,32 @@ function search() {
 }
 
 function toggleSetting(name) {
-    if (name == "language") {
-        var language = document.getElementById("language");
-        var tooltip = document.getElementById("lang-tooltip");
-        var icon = document.getElementsByClassName("fa-solid fa-file-code")[0];
+    var menuToOpen = document.getElementById(name);
+    var tooltip = document.getElementById(name + "-tooltip");
+    var icon = document.getElementById("nav-" + name);
+    hideSetting();
+    if (menuToOpen.style.display == "") {
+        menuToOpen.style.display = "flex";
+        icon.classList.add("active");
+        tooltip.style.visibility = "hidden";
+    } else {
+        menuToOpen.style.display = "";
+        icon.classList.remove("active");
+        tooltip.style.visibility = "";
+    }
+}
 
-        if (language.style.display == "") {
-            language.style.display = "flex";
-            tooltip.style.visibility = "hidden";
-            icon.setAttribute('id', 'icon-solid-click');
-        } else {
-            language.style.display = "";
-            icon.removeAttribute('id');
+function hideSetting() {
+    // this function is a helper function to hide other cards if a new one is trying to be opened
+        var arr = ["settings", "language", "theme"];
+        for (var card in arr) { 
+            var menuToClose = document.getElementById(arr[card]);
+            var tooltip = document.getElementById(arr[card] + "-tooltip");
+            var icon = document.getElementById("nav-" + arr[card]);
+            menuToClose.style.display = "";
+            if (icon.classList.contains("active")) {icon.classList.remove("active")}
             tooltip.style.visibility = "";
         }
-    }
 }
 
 function changeLanguage(selection) {
@@ -74,7 +85,7 @@ function changeLanguage(selection) {
     var langicon = document.getElementById("lang-icon");
     var text = document.getElementById("lang-change-text");
     if (currLang.innerHTML == selection) {
-        text.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> ' + selection + ' is already selected'; 
+        text.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> ' + selection + ' is already selected';
         animateLangChange('error');
         language.style.display = "none";
         icon.removeAttribute('id');
@@ -89,7 +100,7 @@ function changeLanguage(selection) {
             editor.session.setMode("ace/mode/asp");
             language.style.display = "none";
             icon.removeAttribute('id');
-            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to ASP'; 
+            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to ASP';
             animateLangChange('success');
             break;
         case "C":
@@ -99,7 +110,7 @@ function changeLanguage(selection) {
             editor.session.setMode("ace/mode/c_cpp");
             language.style.display = "none";
             icon.removeAttribute('id');
-            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to C'; 
+            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to C';
             animateLangChange('success');
             break;
         case "CPP":
@@ -109,7 +120,7 @@ function changeLanguage(selection) {
             editor.session.setMode("ace/mode/c_cpp");
             language.style.display = "none";
             icon.removeAttribute('id');
-            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to C++'; 
+            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to C++';
             animateLangChange('success');
             break;
         case "CSS":
@@ -119,7 +130,7 @@ function changeLanguage(selection) {
             editor.session.setMode("ace/mode/css");
             language.style.display = "none";
             icon.removeAttribute('id');
-            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to CSS'; 
+            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to CSS';
             animateLangChange('success');
             break;
         case "HTML":
@@ -129,7 +140,7 @@ function changeLanguage(selection) {
             editor.session.setMode("ace/mode/html");
             language.style.display = "none";
             icon.removeAttribute('id');
-            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to HTML'; 
+            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to HTML';
             animateLangChange('success');
             break;
         case "Java":
@@ -139,7 +150,7 @@ function changeLanguage(selection) {
             editor.session.setMode("ace/mode/java");
             language.style.display = "none";
             icon.removeAttribute('id');
-            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to Java'; 
+            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to Java';
             animateLangChange('success');
             break;
         case "JavaScript":
@@ -149,7 +160,7 @@ function changeLanguage(selection) {
             editor.session.setMode("ace/mode/javascript");
             language.style.display = "none";
             icon.removeAttribute('id');
-            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to JavaScript'; 
+            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to JavaScript';
             animateLangChange('success');
             break;
         case "Python":
@@ -159,7 +170,7 @@ function changeLanguage(selection) {
             editor.session.setMode("ace/mode/python");
             language.style.display = "none";
             icon.removeAttribute('id');
-            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to Python'; 
+            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to Python';
             animateLangChange('success');
             break;
         case "Swift":
@@ -169,7 +180,7 @@ function changeLanguage(selection) {
             editor.session.setMode("ace/mode/swift");
             language.style.display = "none";
             icon.removeAttribute('id');
-            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to Swift'; 
+            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to Swift';
             animateLangChange('success');
             break;
     }
