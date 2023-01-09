@@ -13,7 +13,7 @@
     <script src="main.js"></script>
 </head>
 
-<body>
+<body onload="themeToggle()">
     <div class="main">
         <div id="settings" class="theme-selection">
             <div class="theme-card">
@@ -30,7 +30,6 @@
                         onkeyup="search()">
                     <div class="language-list">
                         <ul id="lang-search">
-                            <li><a href="#" onclick="changeLanguage('ASP')">ASP</a></li>
                             <li><a href="#" onclick="changeLanguage('C')">C</a></li>
                             <li><a href="#" onclick="changeLanguage('CPP')">C++</a></li>
                             <li><a href="#" onclick="changeLanguage('CSS')">CSS</a></li>
@@ -46,7 +45,18 @@
         </div>
         <div id="theme" class="theme-selection">
             <div class="theme-card">
-                <h3>hello</h3>
+                <h3>Theme Selection</h3>
+                <div id="theme-toggle" class="light toggle">
+                    <input type="checkbox" id="toggle" onclick='themeToggle();'/>
+                    <label for="toggle"></label>
+                </div>
+                <h5 style="margin-top: 15px;">Selected Theme: <span id="selected-theme" class="accent">Dracula</span></h5>
+                <h5>Available Themes:</h5>
+                <div class="theme-list">
+                    <ul id="theme-search">
+            
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="landing-page">
@@ -130,6 +140,11 @@
     terminal.setTheme("ace/theme/terminal");
     editor.setTheme("ace/theme/dracula");
     editor.session.setMode("ace/mode/javascript");
+    editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true
+    });
 </script>
 
 </html>

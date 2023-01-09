@@ -219,7 +219,6 @@ p {
 }
 
 #editor { 
-    background: rgb(60, 60, 60);
     max-width: 55rem;
     margin: 0;
     padding: 0;
@@ -350,7 +349,7 @@ p {
 }
 
 .language-list::-webkit-scrollbar {
-    display: none;
+    width: 1px;
 }
 
 #lang-search {
@@ -408,3 +407,100 @@ p {
     transition: transform 250ms;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
+
+.theme-card h3 {
+    font-size: 17px;
+}
+
+.theme-card:hover {
+    transform: scale(1.05);
+}
+
+#theme-search {
+    text-decoration: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.theme-list {
+    height: 100px;
+    width: 130px;
+    overflow: auto;
+    margin: auto;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.theme-list::-webkit-scrollbar {
+    width: 1px;
+}
+
+.toggle {
+    display: flex;
+    justify-content: center;
+}
+
+.toggle input[type=checkbox] {
+	display: none;
+}
+
+.toggle label {
+	background-color: #777;
+	border: 2px solid #555;
+	border-radius: 50px;
+    margin-top: 10px;
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: all ease-in-out 0.3s;
+	width: 50px;
+	height: 20px;
+}
+
+.toggle label::after {
+	background-color: #555;
+	border-radius: 50%;
+	content: ' ';
+	cursor: pointer;
+	display: inline-block;
+	position: absolute;
+	left: 2px;
+    top: 1px;
+	transition: all ease-in-out 0.3s;
+	width: 18px;
+	height: 18px;
+}
+
+.toggle label::before {
+	content: "\f186";
+    font: var(--fa-font-solid);
+    color: rgb(54, 54, 54);
+	cursor: pointer;
+	display: inline-block;
+	position: absolute;
+    right: 2px;
+    top: 1px;
+	width: 18px;
+	height: 18px;
+}
+
+.toggle input[type=checkbox]:checked ~ label {
+	background-color: #ffffff;
+    border-color: #0054B0;
+}
+
+.toggle input[type=checkbox]:checked ~ label::after {
+	background-color: #0054B0;
+	transform: translateX(28px);
+}
+
+.toggle input[type=checkbox]:checked ~ label::before {
+    content: "\f185";
+    color: black;
+    left: 2px;
+    top: 3px;
+    font: var(--fa-font-solid);
+    font-size: 15px;
+}
+

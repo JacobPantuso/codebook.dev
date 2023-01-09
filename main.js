@@ -30,6 +30,32 @@ function hideInfoPopup() {
     terminal.style.marginTop = "0px";
 }
 
+function themeToggle() {
+    var themeList = document.getElementById("theme-search");
+    var light = ["Chrome", "Clouds", "Clouds Midnight", "Crimson Editor", "Dawn", "Dreamweaver", "Eclipse", "GitHub", "iPlastic", "Katzemilch", "Kuroir", "Solarized Light", "SQL Server", "TextMate", "Tomorrow"];
+    var dark = ["Ambiance", "Cobalt", "Dracula", "Green on Black", "Pastel on Dark", "Tomorrow Night Blue", "Tomorrow Night Bright", "Tomorrow Night Eighties", "Twilight", "Vibrant Ink", "Xcode"];
+    if (document.getElementById("theme-toggle").classList.contains("dark")) {
+        document.getElementById("theme-toggle").classList.remove("dark")
+        document.getElementById("theme-toggle").classList.add("light")
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/clouds");
+        themeList.innerHTML = "";
+        for (var i = 0; i < light.length; i++) {
+            themeList.innerHTML += '<li><a href="#" onclick="javascript:changeTheme(\'' + light[i] + '\')">' + light[i] + '</a></li>';
+        }
+    } else if (document.getElementById("theme-toggle").classList.contains("light")) {
+        document.getElementById("theme-toggle").classList.remove("light")
+        document.getElementById("theme-toggle").classList.add("dark")
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/dracula");
+        themeList.innerHTML = "";
+        for (var i = 0; i < dark.length; i++) {
+            themeList.innerHTML += '<li><a href="#" onclick="javascript:changeTheme(\'' + dark[i] + '\')">' + dark[i] + '</a></li>';
+        }
+    }
+
+}
+
 function search() {
     var input, filter, ul, li, a, i, txtValue;
     input = document.getElementById("myInput");
@@ -51,12 +77,13 @@ function toggleSetting(name) {
     var menuToOpen = document.getElementById(name);
     var tooltip = document.getElementById(name + "-tooltip");
     var icon = document.getElementById("nav-" + name);
-    hideSetting();
     if (menuToOpen.style.display == "") {
+        hideSetting();
         menuToOpen.style.display = "flex";
         icon.classList.add("active");
         tooltip.style.visibility = "hidden";
     } else {
+        hideSetting();
         menuToOpen.style.display = "";
         icon.classList.remove("active");
         tooltip.style.visibility = "";
@@ -71,7 +98,7 @@ function hideSetting() {
             var tooltip = document.getElementById(arr[card] + "-tooltip");
             var icon = document.getElementById("nav-" + arr[card]);
             menuToClose.style.display = "";
-            if (icon.classList.contains("active")) {icon.classList.remove("active")}
+            icon.classList.remove("active");
             tooltip.style.visibility = "";
         }
 }
@@ -79,7 +106,7 @@ function hideSetting() {
 function changeLanguage(selection) {
     var language = document.getElementById("language");
     var currLang = document.getElementById("selected-lang");
-    var icon = document.getElementsByClassName("fa-solid fa-file-code")[0];
+    var icon = document.getElementById("nav-language");
     var editor = ace.edit("editor");
     var langdoc = document.getElementById("lang-doc");
     var langicon = document.getElementById("lang-icon");
@@ -88,28 +115,18 @@ function changeLanguage(selection) {
         text.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> ' + selection + ' is already selected';
         animateLangChange('error');
         language.style.display = "none";
-        icon.removeAttribute('id');
+        icon.classList.remove("active");
         return;
     }
 
     switch (selection) {
-        case "ASP":
-            currLang.innerHTML = "ASP";
-            langdoc.href = "https://learn.microsoft.com/en-us/previous-versions/iis/6.0-sdk/ms524929(v=vs.90)";
-            langicon.src = "images/icons/asp.png";
-            editor.session.setMode("ace/mode/asp");
-            language.style.display = "none";
-            icon.removeAttribute('id');
-            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to ASP';
-            animateLangChange('success');
-            break;
         case "C":
             currLang.innerHTML = "C";
             langdoc.href = "https://devdocs.io/c/";
             langicon.src = "images/icons/c.svg";
             editor.session.setMode("ace/mode/c_cpp");
             language.style.display = "none";
-            icon.removeAttribute('id');
+            icon.classList.remove("active");
             text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to C';
             animateLangChange('success');
             break;
@@ -119,7 +136,7 @@ function changeLanguage(selection) {
             langicon.src = "images/icons/cpp.svg";
             editor.session.setMode("ace/mode/c_cpp");
             language.style.display = "none";
-            icon.removeAttribute('id');
+            icon.classList.remove("active");
             text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to C++';
             animateLangChange('success');
             break;
@@ -129,7 +146,7 @@ function changeLanguage(selection) {
             langicon.src = "images/icons/css.svg";
             editor.session.setMode("ace/mode/css");
             language.style.display = "none";
-            icon.removeAttribute('id');
+            icon.classList.remove("active");
             text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to CSS';
             animateLangChange('success');
             break;
@@ -139,7 +156,7 @@ function changeLanguage(selection) {
             langicon.src = "images/icons/html.svg";
             editor.session.setMode("ace/mode/html");
             language.style.display = "none";
-            icon.removeAttribute('id');
+            icon.classList.remove("active");
             text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to HTML';
             animateLangChange('success');
             break;
@@ -149,7 +166,7 @@ function changeLanguage(selection) {
             langicon.src = "images/icons/java.svg";
             editor.session.setMode("ace/mode/java");
             language.style.display = "none";
-            icon.removeAttribute('id');
+            icon.classList.remove("active");
             text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to Java';
             animateLangChange('success');
             break;
@@ -159,7 +176,7 @@ function changeLanguage(selection) {
             langicon.src = "images/icons/js.svg";
             editor.session.setMode("ace/mode/javascript");
             language.style.display = "none";
-            icon.removeAttribute('id');
+            icon.classList.remove("active");
             text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to JavaScript';
             animateLangChange('success');
             break;
@@ -169,7 +186,7 @@ function changeLanguage(selection) {
             langicon.src = "images/icons/python.svg";
             editor.session.setMode("ace/mode/python");
             language.style.display = "none";
-            icon.removeAttribute('id');
+            icon.classList.remove("active");
             text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to Python';
             animateLangChange('success');
             break;
@@ -179,7 +196,7 @@ function changeLanguage(selection) {
             langicon.src = "images/icons/swift.svg";
             editor.session.setMode("ace/mode/swift");
             language.style.display = "none";
-            icon.removeAttribute('id');
+            icon.classList.remove("active");
             text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to Swift';
             animateLangChange('success');
             break;
