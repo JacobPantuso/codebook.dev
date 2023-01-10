@@ -13,6 +13,7 @@ function checkContact() {
 function bootUp() {
     themeToggle();
     scannerText = document.getElementById("scanner-text");
+    checkmark = document.getElementById("checkmark");
     webpage = document.getElementById("webpage");
     webpage.style.pointerEvents = "none";
     scannerText.innerHTML = "Verifying your browser before you can fully access <span class=\"color\">codebook.dev</span>";
@@ -23,9 +24,15 @@ function bootUp() {
         scannerText.innerHTML = "A few more seconds, encrypting your connection.";
     }, 3000);
     setTimeout(function() {
-        scannerWindow.style.display = "none";
+        document.getElementById("scanner-container").style.width = "20%";
+        checkmark.style.display = "block";
+        document.getElementById("loader").style.display = "none";
+        scannerText.innerHTML = "Welcome to <span class='color'>codebook.dev</span>";
         webpage.style = "";
     }, 5000);
+    setTimeout(function() {
+        scannerWindow.style.display = "none";
+    }, 7000);
 }
 
 function checkSubmit() {
