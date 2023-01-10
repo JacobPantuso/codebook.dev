@@ -11,17 +11,21 @@ function checkContact() {
 }
 
 function bootUp() {
-    scannerText = document.getElementById("scanner-text");
+    themeToggle();
+    /*scannerText = document.getElementById("scanner-text");
     webpage = document.getElementById("webpage");
+    webpage.style.pointerEvents = "none";
     scannerText.innerHTML = "Verifying your browser before you can fully access <span class=\"color\">codebook.dev</span>";
     scannerWindow = document.getElementById("scanner");
     // wait 2 seconds then change text in scannerText
     setTimeout(function() {
+        document.getElementById("scanner-container").style.width = "40%";
         scannerText.innerHTML = "A few more seconds, encrypting your connection.";
     }, 3000);
     setTimeout(function() {
         scannerWindow.style.display = "none";
-    }, 5000);
+        webpage.style = "";
+    }, 5000);*/
 }
 
 function checkSubmit() {
@@ -60,7 +64,7 @@ function themeToggle() {
         "Tomorrow Night Eighties": "ace/theme/tomorrow_night_eighties",
         "Twilight": "ace/theme/twilight",
         "Vibrant Ink": "ace/theme/vibrant_ink",
-        "Xcode": "ace/theme/xcode" 
+        "Xcode": "ace/theme/xcode"
     };
     var themesLight = new Object();
     var themesLight = {
@@ -77,7 +81,7 @@ function themeToggle() {
         "Solarized Light": "ace/theme/solarized_light",
         "SQL Server": "ace/theme/sql_server",
         "TextMate": "ace/theme/textmate",
-        "Tomorrow": "ace/theme/tomorrow" 
+        "Tomorrow": "ace/theme/tomorrow"
     };
     if (document.getElementById("theme-toggle").classList.contains("dark")) {
         document.getElementById("theme-toggle").classList.remove("dark")
@@ -87,7 +91,7 @@ function themeToggle() {
         document.getElementById("selected-theme").innerHTML = "Clouds";
         themeList.innerHTML = "";
         for (const [key, value] of Object.entries(themesLight)) {
-            themeList.innerHTML += '<li><a href="#" onclick="changeTheme(\'' + value + '\', \''+ key +'\')">' + key + '</a></li>';
+            themeList.innerHTML += '<li><a href="#" onclick="changeTheme(\'' + value + '\', \'' + key + '\')">' + key + '</a></li>';
         }
         // regex to change theme to encrypted
     } else if (document.getElementById("theme-toggle").classList.contains("light")) {
@@ -98,14 +102,12 @@ function themeToggle() {
         document.getElementById("selected-theme").innerHTML = "Dracula";
         themeList.innerHTML = "";
         for (const [key, value] of Object.entries(themesDark)) {
-            themeList.innerHTML += '<li><a href="#" onclick="changeTheme(\'' + value + '\', \''+ key +'\')">' + key + '</a></li>';
+            themeList.innerHTML += '<li><a href="#" onclick="changeTheme(\'' + value + '\', \'' + key + '\')">' + key + '</a></li>';
         }
     }
 }
 
 function changeTheme(theme, name) {
-    console.log(theme);
-    console.log(name);
     var editor = ace.edit("editor");
     editor.setTheme(theme);
     document.getElementById("selected-theme").innerHTML = name;
@@ -149,23 +151,61 @@ function toggleSetting(name) {
 // Change Currently Selected Tab
 function changeTab(button) {
     var newTab = document.getElementById(button);
-    var oldTab = document.getElementsByClassName("selectedtab").item(0);
+    var oldTab = document.getElementsByClassName("selectedtab");
 
-    oldTab.classList.remove("selectedtab");
-    newTab.classList.add("selectedtab");
+    if (oldTab.length == 0) {
+        newTab.classList.add("selectedtab");
+    } else {
+        remTab = document.getElementsByClassName("selectedtab").item(0);
+        remTab.classList.remove("selectedtab");
+        newTab.classList.add("selectedtab");
+    }
+}
+
+var numOfTabs = 1;
+
+function newTab() {
+    var tabList = document.getElementById("tab-list");
+    numOfTabs += 1;
+    tabList.innerHTML += "<button id=\"" + numOfTabs + "\"><span onclick=\"changeTab(\'" + numOfTabs + "\')\">file.js</span><a onclick=\"closeTab(\'" + numOfTabs + "\')\"><i class=\"fa-solid fa-xmark tab-close-icon\"></i></a></button>";
+    changeTab(numOfTabs);
+}
+
+function closeTab(id) {
+    document.getElementById(id).remove();
 }
 
 function hideSetting() {
     // this function is a helper function to hide other cards if a new one is trying to be opened
-        var arr = ["settings", "language", "theme"];
-        for (var card in arr) { 
-            var menuToClose = document.getElementById(arr[card]);
-            var tooltip = document.getElementById(arr[card] + "-tooltip");
-            var icon = document.getElementById("nav-" + arr[card]);
-            menuToClose.style.display = "";
-            icon.classList.remove("active");
-            tooltip.style.visibility = "";
-        }
+    var arr = ["settings", "language", "theme"];
+    for (var card in arr) {
+        var menuToClose = document.getElementById(arr[card]);
+        var tooltip = document.getElementById(arr[card] + "-tooltip");
+        var icon = document.getElementById("nav-" + arr[card]);
+        menuToClose.style.display = "";
+        icon.classList.remove("active");
+        tooltip.style.visibility = "";
+    }
+}
+
+function disableCompilation(language) {
+    var run_btn = document.getElementById("run-btn");
+    var terminal = document.getElementById("terminal");
+    var termHide = document.getElementById("terminal-hide");
+    disabledLang = document.getElementById("disabled-lang");
+    run_btn.classList.add("disabled");
+    terminal.style.display = "none";
+    disabledLang.innerHTML = language;
+    termHide.style.display = "flex";
+}
+
+function enableCompilation() {
+    var run_btn = document.getElementById("run-btn");
+    var terminal = document.getElementById("terminal");
+    var termHide = document.getElementById("terminal-hide");
+    run_btn.classList.remove("disabled");
+    terminal.style.display = "flex";
+    termHide.style.display = "none";
 }
 
 // Change Selected Language
@@ -177,97 +217,57 @@ function changeLanguage(selection) {
     var langdoc = document.getElementById("lang-doc");
     var langicon = document.getElementById("lang-icon");
     var text = document.getElementById("lang-change-text");
+    var lang = new Object();
+    var doc = new Object();
+    var lang = {
+        "c": "ace/mode/c_cpp",
+        "cpp": "images/icons/cpp.svg",
+        "css": "ace/mode/css",
+        "html": "ace/mode/html",
+        "java": "ace/mode/java",
+        "javascript": "ace/mode/javascript",
+        "python": "ace/mode/python",
+        "swift": "ace/mode/swift"
+    };
+    var doc = {
+        "Python": "https://docs.python.org/3/",
+        "C": "https://devdocs.io/c/",
+        "CPP": "https://devdocs.io/cpp/",
+        "CSS": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+        "HTML": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+        "Java": "https://docs.oracle.com/en/java/javase/19/",
+        "JavaScript": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+        "Swift": "https://www.swift.org/documentation/"
+    };
+    if (selection == "HTML" || selection == "CSS") {
+        disableCompilation(selection);
+    } else {
+        enableCompilation();
+    }
     if (currLang.innerHTML == selection) {
         text.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> ' + selection + ' is already selected';
         animateLangChange('error');
         language.style.display = "none";
         icon.classList.remove("active");
         return;
-    }
-
-    switch (selection) {
-        case "C":
-            currLang.innerHTML = "C";
-            langdoc.href = "https://devdocs.io/c/";
-            langicon.src = "images/icons/c.svg";
-            editor.session.setMode("ace/mode/c_cpp");
-            language.style.display = "none";
-            icon.classList.remove("active");
-            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to C';
-            animateLangChange('success');
-            break;
-        case "CPP":
+    } else {
+        if (selection == "CPP") {
             currLang.innerHTML = "C++";
-            langdoc.href = "https://devdocs.io/cpp/";
-            langicon.src = "images/icons/cpp.svg";
-            editor.session.setMode("ace/mode/c_cpp");
-            language.style.display = "none";
-            icon.classList.remove("active");
             text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to C++';
-            animateLangChange('success');
-            break;
-        case "CSS":
-            currLang.innerHTML = "CSS";
-            langdoc.href = "https://developer.mozilla.org/en-US/docs/Web/CSS";
-            langicon.src = "images/icons/css.svg";
-            editor.session.setMode("ace/mode/css");
-            language.style.display = "none";
-            icon.classList.remove("active");
-            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to CSS';
-            animateLangChange('success');
-            break;
-        case "HTML":
-            currLang.innerHTML = "HTML";
-            langdoc.href = "https://developer.mozilla.org/en-US/docs/Web/HTML";
-            langicon.src = "images/icons/html.svg";
-            editor.session.setMode("ace/mode/html");
-            language.style.display = "none";
-            icon.classList.remove("active");
-            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to HTML';
-            animateLangChange('success');
-            break;
-        case "Java":
-            currLang.innerHTML = "Java";
-            langdoc.href = "https://docs.oracle.com/en/java/javase/19/";
-            langicon.src = "images/icons/java.svg";
-            editor.session.setMode("ace/mode/java");
-            language.style.display = "none";
-            icon.classList.remove("active");
-            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to Java';
-            animateLangChange('success');
-            break;
-        case "JavaScript":
-            currLang.innerHTML = "JavaScript";
-            langdoc.href = "https://developer.mozilla.org/en-US/docs/Web/JavaScript";
-            langicon.src = "images/icons/js.svg";
-            editor.session.setMode("ace/mode/javascript");
-            language.style.display = "none";
-            icon.classList.remove("active");
-            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to JavaScript';
-            animateLangChange('success');
-            break;
-        case "Python":
-            currLang.innerHTML = "Python";
-            langdoc.href = "https://docs.python.org/3/";
-            langicon.src = "images/icons/python.svg";
-            editor.session.setMode("ace/mode/python");
-            language.style.display = "none";
-            icon.classList.remove("active");
-            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to Python';
-            animateLangChange('success');
-            break;
-        case "Swift":
-            currLang.innerHTML = "Swift";
-            langdoc.href = "https://www.swift.org/documentation/";
-            langicon.src = "images/icons/swift.svg";
-            editor.session.setMode("ace/mode/swift");
-            language.style.display = "none";
-            icon.classList.remove("active");
-            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to Swift';
-            animateLangChange('success');
-            break;
+        }
+        else {
+            currLang.innerHTML = selection;
+            text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to ' + selection;
+        }
+        langdoc.href = doc[selection];
+        langicon.src = "images/icons/" + selection.toLowerCase() + ".svg";
+        editor.session.setMode(lang[selection.toLowerCase()]);
+        language.style.display = "none";
+        icon.classList.remove("active");
+        animateLangChange('success');
     }
 }
+
 //animate lang change to slide up from bottom of screen
 function animateLangChange(bool) {
     var lang = document.getElementById("lang-change");
