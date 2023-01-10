@@ -89,10 +89,23 @@
                     <a class="run-btn"><i class="fa-solid fa-play"></i> Run</a>
                 </div>
                 <div class="landing-page-container">
-                    <div id="editor"></div>
-                    <!--<div class="landing-code-window">
-                        <textarea id="code-window-text" placeholder="> Enter your code here! _"></textarea><br><br>
-                    </div>-->
+                    <div class="editor-and-tab-container">
+                        <div class="tabs">
+                            <button class="selectedtab" id="1" onclick="changeTab('1')">
+                                file.js
+                                <i class="fa-solid fa-xmark tab-close-icon"></i>
+                            </button>
+                            <button id="2" onclick="changeTab('2')">
+                                file.py
+                                <i class="fa-solid fa-xmark tab-close-icon"></i>
+                            </button>
+                            <button id="3" onclick="changeTab('3')">
+                                file.java
+                                <i class="fa-solid fa-xmark tab-close-icon"></i>
+                            </button>
+                        </div>
+                        <div id="editor"></div>
+                    </div>
                     <div class="landing-info-terminal-container">
                         <div id="info" class="landing-info">
                             <h1 class="color">Hey There! <i class="fa-solid fa-hands-clapping"></i></i></h1>
