@@ -32,8 +32,39 @@ function hideInfoPopup() {
 
 function themeToggle() {
     var themeList = document.getElementById("theme-search");
-    var light = ["Chrome", "Clouds", "Clouds Midnight", "Crimson Editor", "Dawn", "Dreamweaver", "Eclipse", "GitHub", "iPlastic", "Katzemilch", "Kuroir", "Solarized Light", "SQL Server", "TextMate", "Tomorrow"];
-    var dark = ["Ambiance", "Cobalt", "Dracula", "Green on Black", "Pastel on Dark", "Tomorrow Night Blue", "Tomorrow Night Bright", "Tomorrow Night Eighties", "Twilight", "Vibrant Ink", "Xcode"];
+    // initiate a dictionairy where a theme and its corresponding ace theme is stored
+    var themesDark = new Object();
+    var themesDark = {
+        "Ambiance": "ace/theme/ambiance",
+        "Cobalt": "ace/theme/cobalt",
+        "Clouds Midnight": "ace/theme/clouds_midnight",
+        "Dracula": "ace/theme/dracula",
+        "Green on Black": "ace/theme/gob",
+        "Pastel on Dark": "ace/theme/pastel_on_dark",
+        "Tomorrow Night Blue": "ace/theme/tomorrow_night_blue",
+        "Tomorrow Night Bright": "ace/theme/tomorrow_night_bright",
+        "Tomorrow Night Eighties": "ace/theme/tomorrow_night_eighties",
+        "Twilight": "ace/theme/twilight",
+        "Vibrant Ink": "ace/theme/vibrant_ink",
+        "Xcode": "ace/theme/xcode" 
+    };
+    var themesLight = new Object();
+    var themesLight = {
+        "Chrome": "ace/theme/chrome",
+        "Clouds": "ace/theme/clouds",
+        "Crimson Editor": "ace/theme/crimson_editor",
+        "Dawn": "ace/theme/dawn",
+        "Dreamweaver": "ace/theme/dreamweaver",
+        "Eclipse": "ace/theme/eclipse",
+        "GitHub": "ace/theme/github",
+        "iPlastic": "ace/theme/iPlastic",
+        "Katzemilch": "ace/theme/katzemilch",
+        "Kuroir": "ace/theme/kuroir",
+        "Solarized Light": "ace/theme/solarized_light",
+        "SQL Server": "ace/theme/sql_server",
+        "TextMate": "ace/theme/textmate",
+        "Tomorrow": "ace/theme/tomorrow" 
+    };
     if (document.getElementById("theme-toggle").classList.contains("dark")) {
         document.getElementById("theme-toggle").classList.remove("dark")
         document.getElementById("theme-toggle").classList.add("light")
@@ -41,9 +72,10 @@ function themeToggle() {
         editor.setTheme("ace/theme/clouds");
         document.getElementById("selected-theme").innerHTML = "Clouds";
         themeList.innerHTML = "";
-        for (var i = 0; i < light.length; i++) {
-            themeList.innerHTML += '<li><a href="#" onclick="javascript:changeTheme(\'' + light[i] + '\')">' + light[i] + '</a></li>';
+        for (const [key, value] of Object.entries(themesLight)) {
+            themeList.innerHTML += '<li><a href="#" onclick="changeTheme(\'' + value + '\', \''+ key +'\')">' + key + '</a></li>';
         }
+        // regex to change theme to encrypted
     } else if (document.getElementById("theme-toggle").classList.contains("light")) {
         document.getElementById("theme-toggle").classList.remove("light")
         document.getElementById("theme-toggle").classList.add("dark")
@@ -51,11 +83,19 @@ function themeToggle() {
         editor.setTheme("ace/theme/dracula");
         document.getElementById("selected-theme").innerHTML = "Dracula";
         themeList.innerHTML = "";
-        for (var i = 0; i < dark.length; i++) {
-            themeList.innerHTML += '<li><a href="#" onclick="javascript:changeTheme(\'' + dark[i] + '\')">' + dark[i] + '</a></li>';
+        for (const [key, value] of Object.entries(themesDark)) {
+            themeList.innerHTML += '<li><a href="#" onclick="changeTheme(\'' + value + '\', \''+ key +'\')">' + key + '</a></li>';
         }
     }
+}
 
+function changeTheme(theme, name) {
+    console.log(theme);
+    console.log(name);
+    var editor = ace.edit("editor");
+    editor.setTheme(theme);
+    document.getElementById("selected-theme").innerHTML = name;
+    hideSetting();
 }
 
 function search() {
@@ -267,6 +307,7 @@ function animateLangChange(bool) {
             , 5000);
         setTimeout(function () {
             lang.style.bottom = "-50px";
+            langText.style.backgroundColor = "rgb(56, 157, 56)";
         }
             , 6000);
     }
