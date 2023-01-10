@@ -39,6 +39,7 @@ function themeToggle() {
         document.getElementById("theme-toggle").classList.add("light")
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/clouds");
+        document.getElementById("selected-theme").innerHTML = "Clouds";
         themeList.innerHTML = "";
         for (var i = 0; i < light.length; i++) {
             themeList.innerHTML += '<li><a href="#" onclick="javascript:changeTheme(\'' + light[i] + '\')">' + light[i] + '</a></li>';
@@ -48,6 +49,7 @@ function themeToggle() {
         document.getElementById("theme-toggle").classList.add("dark")
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/dracula");
+        document.getElementById("selected-theme").innerHTML = "Dracula";
         themeList.innerHTML = "";
         for (var i = 0; i < dark.length; i++) {
             themeList.innerHTML += '<li><a href="#" onclick="javascript:changeTheme(\'' + dark[i] + '\')">' + dark[i] + '</a></li>';
