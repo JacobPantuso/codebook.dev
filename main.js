@@ -90,6 +90,15 @@ function toggleSetting(name) {
     }
 }
 
+// Change Currently Selected Tab
+function changeTab(button) {
+    var newTab = document.getElementById(button);
+    var oldTab = document.getElementsByClassName("selectedtab").item(0);
+
+    oldTab.classList.remove("selectedtab");
+    newTab.classList.add("selectedtab");
+}
+
 function hideSetting() {
     // this function is a helper function to hide other cards if a new one is trying to be opened
         var arr = ["settings", "language", "theme"];
@@ -103,6 +112,7 @@ function hideSetting() {
         }
 }
 
+// Change Selected Language
 function changeLanguage(selection) {
     var language = document.getElementById("language");
     var currLang = document.getElementById("selected-lang");
