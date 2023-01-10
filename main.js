@@ -10,6 +10,20 @@ function checkContact() {
     }
 }
 
+function bootUp() {
+    scannerText = document.getElementById("scanner-text");
+    webpage = document.getElementById("webpage");
+    scannerText.innerHTML = "Verifying your browser before you can fully access <span class=\"color\">codebook.dev</span>";
+    scannerWindow = document.getElementById("scanner");
+    // wait 2 seconds then change text in scannerText
+    setTimeout(function() {
+        scannerText.innerHTML = "A few more seconds, encrypting your connection.";
+    }, 3000);
+    setTimeout(function() {
+        scannerWindow.style.display = "none";
+    }, 5000);
+}
+
 function checkSubmit() {
     var name = document.getElementById("name").value;
     var submit = document.getElementById("submit");

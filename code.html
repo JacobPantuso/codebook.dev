@@ -11,9 +11,22 @@
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="styles.css">
     <script src="main.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
-<body onload="themeToggle()">
-    <div class="main">
+<body onload="bootUp()">
+    <div id="scanner" class="browser-check">
+        <div class="check-container">
+            <div class="check-container-content">
+                <div class="loader">
+                    <svg class="circular-loader" viewBox="25 25 50 50">
+                        <circle class="loader-path" cx="50" cy="50" r="20"></circle>
+                    </svg>
+                </div>
+                <p id="scanner-text"></p>
+            </div>
+        </div>
+    </div>
+    <div id="webpage" class="main">
         <div id="settings" class="theme-selection">
             <div class="theme-card">
                 <h3>hello</h3>
