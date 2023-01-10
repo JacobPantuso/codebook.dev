@@ -29,10 +29,21 @@ function bootUp() {
         document.getElementById("loader").style.display = "none";
         scannerText.innerHTML = "Welcome to <span class='color'>codebook.dev</span>";
         webpage.style = "";
-    }, 5000);
+    }, 4500);
+    setTimeout(function() {
+        // animate the scanenrWindows opacity
+        scannerWindow.animate([{
+            opacity: 1
+        }, {
+            opacity: 0
+        }], {
+            duration: 1000,
+            iterations: 1
+        });
+    }, 5500);
     setTimeout(function() {
         scannerWindow.style.display = "none";
-    }, 7000);
+    }, 6500);
 }
 
 function checkSubmit() {
