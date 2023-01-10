@@ -12,7 +12,7 @@ function checkContact() {
 
 function bootUp() {
     themeToggle();
-    /*scannerText = document.getElementById("scanner-text");
+    scannerText = document.getElementById("scanner-text");
     webpage = document.getElementById("webpage");
     webpage.style.pointerEvents = "none";
     scannerText.innerHTML = "Verifying your browser before you can fully access <span class=\"color\">codebook.dev</span>";
@@ -25,7 +25,7 @@ function bootUp() {
     setTimeout(function() {
         scannerWindow.style.display = "none";
         webpage.style = "";
-    }, 5000);*/
+    }, 5000);
 }
 
 function checkSubmit() {
