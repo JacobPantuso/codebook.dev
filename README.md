@@ -1,6 +1,7 @@
 <br>
 <p align=center><img src="https://github.com/C-Teo/Code.io/blob/main/images/logo.png?raw=true"></p>
 <hr>
+<p align=center><i>this is a placeholder repo that will not contain source files until a stable build is established</i></p>
 
 ## Description
 Our mission at **codebook.dev** is to make coding **online** easier.
@@ -16,10 +17,13 @@ We do this by allowing users to code and execute the written code all within the
 
 ## Table of Contents
 
+- [Description](#description)
+- [Table of Contents](#table-of-contents)
 - [Usage](#usage)
 - [Installation](#installation)
 - [Documentation](#documentation)
 - [Library and Frameworks](#library-and-frameworks)
+  - [*Ace Editor*](#ace-editor)
 
 ## Usage
 ## Installation
