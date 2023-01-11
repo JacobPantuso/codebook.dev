@@ -81,8 +81,7 @@ function themeToggle() {
         "Tomorrow Night Bright": "ace/theme/tomorrow_night_bright",
         "Tomorrow Night Eighties": "ace/theme/tomorrow_night_eighties",
         "Twilight": "ace/theme/twilight",
-        "Vibrant Ink": "ace/theme/vibrant_ink",
-        "Xcode": "ace/theme/xcode"
+        "Vibrant Ink": "ace/theme/vibrant_ink"
     };
     var themesLight = new Object();
     var themesLight = {
@@ -99,7 +98,8 @@ function themeToggle() {
         "Solarized Light": "ace/theme/solarized_light",
         "SQL Server": "ace/theme/sql_server",
         "TextMate": "ace/theme/textmate",
-        "Tomorrow": "ace/theme/tomorrow"
+        "Tomorrow": "ace/theme/tomorrow",
+        "Xcode": "ace/theme/xcode"
     };
     if (document.getElementById("theme-toggle").classList.contains("dark")) {
         document.getElementById("theme-toggle").classList.remove("dark")

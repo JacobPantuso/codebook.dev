@@ -10,7 +10,7 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    opacity: 0.8;
+    opacity: 0.95;
     top:0; bottom:0; left:0; right:0;
     z-index: 2;
     background-color: #343434;
@@ -28,7 +28,7 @@ body {
 .get-started-card {
     margin: auto;
     width: 50%;
-    height: 55%;
+    height: 50%;
     background-color: #1c1c1c9e;
     padding: 2.5rem 2.5rem;
     border-radius: 50px;
@@ -38,9 +38,18 @@ body {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 
+.get-started-text:hover {
+    background: -webkit-linear-gradient(180deg, #FF0000 -8.55%, #FF007A 17.53%, #C323FF 48.36%, #5E6CFF 79.18%, #00A3FF 105.26%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+}
+
 .descriptions {
     width: 100%;
-    height: 300px;
+    height: 220px;
+    margin-top: 50px;
     display: flex;
     flex-direction: row;
 }
@@ -373,7 +382,6 @@ button.selectedtab {
 }
 
 #editor { 
-    max-width: 55rem;
     margin: 0;
     padding: 0;
     flex: 2;
