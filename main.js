@@ -12,7 +12,7 @@ function checkContact() {
 
 function bootUp() {
     themeToggle();
-    scannerText = document.getElementById("scanner-text");
+    /*scannerText = document.getElementById("scanner-text");
     checkmark = document.getElementById("checkmark");
     webpage = document.getElementById("webpage");
     webpage.style.pointerEvents = "none";
@@ -43,7 +43,7 @@ function bootUp() {
     }, 5500);
     setTimeout(function() {
         scannerWindow.style.display = "none";
-    }, 6500);
+    }, 6500);*/
 }
 
 function checkSubmit() {
@@ -350,3 +350,7 @@ if (window.location.href.match('get-started.html') != null) {
     var display = urlParams.get('name');
     document.getElementById("name").innerHTML = "Hey, " + display + " 👋🏼";
 }
+
+/*window.onbeforeunload = function() {
+    return "Data will be lost if you leave the page, are you sure?";
+  };*/
