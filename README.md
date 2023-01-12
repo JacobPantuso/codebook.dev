@@ -26,7 +26,12 @@ We do this by allowing users to code and execute the written code all within the
   - [*Ace Editor*](#ace-editor)
 
 ## Usage
+1. Visit the site linked below
+2. Enter your name
+3. Start coding!
+
 ## Installation
+The website is live at https://www.codebook.dev/index.html <br>*note: compilation features are not working at the moment since it is not completed*
 ## Documentation
 ## Library and Frameworks
 
