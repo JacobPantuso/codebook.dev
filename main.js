@@ -12,6 +12,7 @@ function checkContact() {
 
 function bootUp() {
     themeToggle();
+    newTab("1");
     /*scannerText = document.getElementById("scanner-text");
     checkmark = document.getElementById("checkmark");
     webpage = document.getElementById("webpage");
@@ -178,15 +179,29 @@ function changeTab(button) {
         remTab.classList.remove("selectedtab");
         newTab.classList.add("selectedtab");
     }
+    console.log(button);
+    var editor = ace.edit("editor");
+    editor.setSession(sessions[button]);
 }
 
-var numOfTabs = 1;
+var sessions = new Object();
+var numOfTabs = 0;
 
 function newTab() {
     var tabList = document.getElementById("tab-list");
     numOfTabs += 1;
     tabList.innerHTML += "<button id=\"" + numOfTabs + "\"><span onclick=\"changeTab(\'" + numOfTabs + "\')\">file.js</span><a onclick=\"closeTab(\'" + numOfTabs + "\')\"><i class=\"fa-solid fa-xmark tab-close-icon\"></i></a></button>";
+    newSession(String(numOfTabs));
     changeTab(numOfTabs);
+}
+
+function newSession(name) {
+    var editor = ace.edit("editor");
+    var ses = ace.createEditSession("// Edit Session " + name);
+    sessions[name] = ses;
+    editor.setSession(ses);
+    editor.session.setMode("ace/mode/javascript");
+    console.log(sessions);
 }
 
 function closeTab(id) {
