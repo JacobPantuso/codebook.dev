@@ -1,5 +1,6 @@
+// redirect to login page if href contains # but append the # to the href in the login page
 if (window.location.href.indexOf("#") > -1) {
-    window.location.href = "login.html";
+    window.location.href = "login.html#" + window.location.href.split("#")[1];
 }
 
 // when all elements in contact are filled out, set the submit button to green
