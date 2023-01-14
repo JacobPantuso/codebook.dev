@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/f7c8be4779.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <link rel="stylesheet" href="src/css/main.css">
     <link rel="stylesheet" href="src/css/login.css">
+    <link rel="icon" href="images/icons/codebook-logo.ico">
     <title>codebook.dev - Log In</title>
 </head>
 <body>
@@ -15,8 +17,10 @@
         <div class="title">
             <h1 class="name"><span style="margin-right: 10px;">▶</span>codebook.dev</h1>
             <h3 id="name"></h3>
+            <p class="netlify-id">We use <span class="accent">Netlify Identity</span> to verify user accounts. Click the button below to authenticate.</p>
+            <button onclick="netlifyIdentity.open();" class="open-login"><img src="images/icons/netlify.svg">Authenticate with Netlify</button>
         </div>
-        <div class="login-form">
+        <!--<div class="login-form">
             <form>
                 <h4>Log In</h4>
                 <div class="fields">
@@ -43,10 +47,14 @@
                     <p>Don't have an account? <span class="accent">Get Started.</span></p>
                 </div>
             </form>
-        </div>
+        </div>-->
     </div>
+    <footer>
+        <p>&copy 2022-23 <span class="color">codebook.dev</span> - Authentication Provided by <span class="accent">Netlify</span></p>
+    </footer>
 </body>
 <script src="src/js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script src="src/js/login.js"></script>
+<script src="src/js/particles.js"></script>
 </html>

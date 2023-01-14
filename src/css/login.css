@@ -3,8 +3,10 @@
 
 /* ---- reset ---- */
 
-body {
+body,html {
     margin: 0;
+    height: 100%;
+    width: 100%;
     background-color: #17182f;
     color: white;
 }
@@ -22,17 +24,56 @@ canvas {
     height: 100%;
 }
 
+footer {
+    position: absolute;
+    bottom: 0;
+}
+
 .main {
     display: flex;
-    flex-direction: column;
     position: absolute;
-    width: 100%;
+    left: 0px;
+    right: 0px;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    min-height: 100vh;
 }
 
 /* Login Form Styling */
 .title {
-    margin-top: 3rem;
+    margin: auto;
+    align-items: center;
+}
+
+.netlify-id {
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 300;
+}
+
+.open-login {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    gap: 10px;
+    padding: 8px 20px;
+    border-radius: 10px;
+    border: none;
+    align-items: center;
+    background-color: rgb(40, 149, 168);
+    color: white;
+    cursor: pointer;
+}
+
+.open-login:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.open-login img {
+    width: 30px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .login-form {
@@ -44,7 +85,6 @@ canvas {
 }
 
 .login-form form {
-    font-family: "SF Pro Display", sans-serif;
     background-color: rgba(38, 38, 63, 0.5);
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
     display: flex;
