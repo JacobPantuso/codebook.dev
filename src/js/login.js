@@ -14,18 +14,10 @@
 } */
 
 // If the user is logged in and is not a new user redirect to code.html (using netlify redirect)
-netlifyIdentity.on("login", user => {
-  if (user.app_metadata.newUser === false) {
+netlifyIdentity.on("login", () => {
     window.location.href = "/code.html";
-  }
 });
 
 netlifyIdentity.on("logout", () => {
   window.location.href = "/index.html";
-});
-
-netlifyIdentity.on("login", user => {
-  if (user.app_metadata.newUser === true) {
-    window.location.href = "/get-started.html";
-  }
 });
