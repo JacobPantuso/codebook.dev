@@ -1,0 +1,168 @@
+/* General Styling */
+@import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap');
+
+/* ---- reset ---- */
+
+body {
+    margin: 0;
+    background-color: #17182f;
+    color: white;
+}
+  
+canvas {
+    display: block;
+}
+
+  
+  /* ---- particles.js container ---- */
+  
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+
+/* Login Form Styling */
+.title {
+    margin-top: 3rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 3rem;
+    align-items: center;
+}
+
+.login-form form {
+    font-family: "SF Pro Display", sans-serif;
+    background-color: rgba(38, 38, 63, 0.5);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    width: 300px;
+    border-radius: 20px;
+}
+
+.login-form h4 {
+    font-size: 25px;
+    margin: 30px;
+    margin-bottom: 0px;
+}
+
+.login-form button {
+    width: 50%;
+    margin: auto;
+    margin-top: 0px;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: #2f80ed;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.bottom {   
+    display: flex;
+    margin-top: auto;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.fields {
+    display: flex;
+    width: 75%;
+    margin: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 10px;
+}
+
+.fields input {
+    width: 100%;
+    margin-bottom: 0px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.fields input:focus {
+    outline: none;
+    box-shadow: 0px 0px 30px 0px rgb(51, 40, 138);
+}
+
+.fields i {
+    margin: auto;
+    font-size: 22px;
+}
+
+.box {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 15px;
+    margin-top: 0px;
+}
+
+.inner-box {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 15px;
+    margin-top: 0px;
+}
+
+.social p {
+    font-size: 12px;
+}
+
+.github {
+    display: flex;
+    background-color: black;
+    width: 41px;
+    height: 41px;
+    margin: auto;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.github i {
+    margin: auto;
+}
+
+.github:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.password-box {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 0px;
+}
+
+.forgot {
+    margin-left: auto;
+    margin-top: none;
+    font-size: 12px;
+}
+
+.bottom p {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
