@@ -1,3 +1,7 @@
+if (window.location.href.indexOf("#") > -1) {
+    window.location.href = "login.html";
+}
+
 // when all elements in contact are filled out, set the submit button to green
 function checkContact() {
     var name = document.getElementById("name").value;
