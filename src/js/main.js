@@ -20,17 +20,19 @@ function bootUp() {
     newTab("1");
     // grab language from local storage
     var language = localStorage.getItem("language");
-    console.log(language);
     if (language == null) {
         language = "javascript";
     } else {
         changeLanguage(language);
     }
+    //encrpytConnection();
     // grab first name from netlify identity
-    var name = netlifyIdentity.currentUser().user_metadata.full_name.split(" ")[0];
-    document.getElementById("hey-there-code").innerHTML = "Hey " + name + "!<i class='fa-solid fa-hands-clapping'></i></i>";
+    //var name = netlifyIdentity.currentUser().user_metadata.full_name.split(" ")[0];
+    //document.getElementById("hey-there-code").innerHTML = "Hey " + name + "!<i class='fa-solid fa-hands-clapping'></i></i>";
+}
 
-    /*scannerText = document.getElementById("scanner-text");
+function encrpytConnection() {
+    scannerText = document.getElementById("scanner-text");
     checkmark = document.getElementById("checkmark");
     webpage = document.getElementById("webpage");
     webpage.style.pointerEvents = "none";
@@ -61,7 +63,7 @@ function bootUp() {
     }, 5500);
     setTimeout(function() {
         scannerWindow.style.display = "none";
-    }, 6500);*/
+    }, 6500);
 }
 
 function checkSubmit() {
@@ -82,6 +84,42 @@ function hideInfoPopup() {
     info.style.display = "none";
     var terminal = document.getElementById("terminal");
     terminal.style.marginTop = "0px";
+}
+
+function hideSetting() {
+    // this function is a helper function to hide other cards if a new one is trying to be opened
+    var arr = ["settings", "language", "theme"];
+    for (var card in arr) {
+        var menuToClose = document.getElementById(arr[card]);
+        var tooltip = document.getElementById(arr[card] + "-tooltip");
+        var icon = document.getElementById("nav-" + arr[card]);
+        menuToClose.style.display = "";
+        icon.classList.remove("active");
+        tooltip.style.visibility = "";
+    }
+}
+
+function changeFontSize(operation) {
+    var fontSize = document.getElementById("font-size").innerHTML;
+    // if fontSize is 10 then don't go down anymore and if fontSize is 30 then don't go up anymore and set plus or minus to red respectively
+    if (fontSize == 10 && operation == "down") {
+        document.getElementById("font-size-down").style.color = "red";
+        return;
+    } else if (fontSize == 30 && operation == "up") {
+        document.getElementById("font-size-up").style.color = "red";
+        return;
+    } else {
+        document.getElementById("font-size-down").style.color = "white";
+        document.getElementById("font-size-up").style.color = "white";
+    }
+    if (operation == "up") {
+        fontSize++;
+    } else if (operation == "down") {
+        fontSize--;
+    }
+    document.getElementById("font-size").innerHTML = fontSize;
+    var editor = ace.edit("editor");
+    editor.setOptions({ fontSize: fontSize + "px" });
 }
 
 function themeToggle() {
@@ -165,7 +203,7 @@ function search() {
         }
     }
 }
-
+// execute toggleSetting if theme, language, or settings is pressed
 function toggleSetting(name) {
     var menuToOpen = document.getElementById(name);
     var tooltip = document.getElementById(name + "-tooltip");
@@ -182,6 +220,7 @@ function toggleSetting(name) {
         tooltip.style.visibility = "";
     }
 }
+
 
 // Change Currently Selected Tab
 function changeTab(button) {
@@ -226,19 +265,6 @@ function newSession(name) {
 
 function closeTab(id) {
     document.getElementById(id).remove();
-}
-
-function hideSetting() {
-    // this function is a helper function to hide other cards if a new one is trying to be opened
-    var arr = ["settings", "language", "theme"];
-    for (var card in arr) {
-        var menuToClose = document.getElementById(arr[card]);
-        var tooltip = document.getElementById(arr[card] + "-tooltip");
-        var icon = document.getElementById("nav-" + arr[card]);
-        menuToClose.style.display = "";
-        icon.classList.remove("active");
-        tooltip.style.visibility = "";
-    }
 }
 
 function disableCompilation(language) {
@@ -388,4 +414,5 @@ if (window.location.href.match('login.html') != null) {
 /*window.onbeforeunload = function() {
     return "Data will be lost if you leave the page, are you sure?";
   };*/
+// export all functions in the file
 

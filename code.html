@@ -9,14 +9,15 @@
     <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/f7c8be4779.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/settings.css">
     <link rel="stylesheet" href="src/css/styles.css">
-    <script src="src/js/main.js"></script>
+    <link rel="icon" href="images/icons/codebook-logo.ico">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 
-<body onload="bootUp()">
-    <div id="webpage" class="main">
-        <!--<div id="scanner" class="browser-check">
+<body onload="bootUp();">
+    <!--<div id="webpage" class="main">
+        <div id="scanner" class="browser-check">
             <div id="scanner-container" class="check-container">
                 <div class="check-container-content">
                     <div class="loader">
@@ -31,7 +32,34 @@
         </div>-->
         <div id="settings" class="settings-menu">
             <div class="settings-card">
-                <h3>Quick Actions</h3>
+                <div class="card-content">
+                    <h3>Quick Actions</h3>
+                    <div class="quick-action-row">
+                        <div class="action-tooltip">
+                            <a><i class="action fa-solid fa-circle-user"></i></a>
+                            <span id="action-tooltip" class="action-tooltiptext">Profile</span>
+                        </div>
+                        <div class="action-tooltip">
+                            <a><i class="action fa-solid fa-save"></i></a>
+                            <span id="action-tooltip" class="action-tooltiptext">Save</span>
+                        </div>
+                        <div class="action-tooltip">
+                            <a><i class="action fa-solid fa-copy"></i></a>
+                            <span id="action-tooltip" class="action-tooltiptext">Copy</span>
+                        </div>
+                    </div>
+                    <div class="settings-col">
+                        <div class="settings-row">
+                            <h5>Font Size</h5>
+                                <div class="font-size">
+                                    <a id="font-size-up" onclick="changeFontSize('up')"><i class="fa-solid fa-plus"></i></a>
+                                    <p id="font-size">12</p>
+                                    <a id="font-size-down" onclick="changeFontSize('down')"><i class="fa-solid fa-minus"></i></a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="bottom-esc">press <span class="accent">escape</span> at any time to exit this menu</p>
             </div>
         </div>
         <div id="language" class="language-selection">
@@ -101,7 +129,6 @@
             <div class="code">
                 <div class="landing-nav">
                     <a style="font-size: 18px;" href="index.html" class="color">codebook.dev</a>
-
                     <a id="run-btn" class="run-btn"><i class="fa-solid fa-play"></i> Run</a>
                 </div>
                 <div class="landing-page-container">
@@ -162,6 +189,9 @@
         </div>
     </div>
 </body>
+<script src="src/js/main.js"></script>
+<script type="module" src="src/js/code.js"></script>
+<script type="module" src="src/js/modules.js"></script>
 <script src="/editor-src/src/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var terminal = ace.edit("terminal");
@@ -171,5 +201,4 @@
     terminal.setTheme("ace/theme/terminal");
     terminal.setReadOnly(true);
 </script>
-
 </html>
