@@ -8,9 +8,9 @@
     <title>codebook.dev - Code</title>
     <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/f7c8be4779.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="styles.css">
-    <script src="main.js"></script>
+    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/styles.css">
+    <script src="src/js/main.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 
@@ -44,14 +44,13 @@
                         onkeyup="search()">
                     <div class="language-list">
                         <ul id="lang-search">
-                            <li><a href="#" onclick="changeLanguage('C')">C</a></li>
-                            <li><a href="#" onclick="changeLanguage('CPP')">C++</a></li>
-                            <li><a href="#" onclick="changeLanguage('CSS')">CSS</a></li>
-                            <li><a href="#" onclick="changeLanguage('HTML')">HTML</a></li>
-                            <li><a href="#" onclick="changeLanguage('Java')">Java</a></li>
-                            <li><a href="#" onclick="changeLanguage('JavaScript')">JavaScript</a></li>
-                            <li><a href="#" onclick="changeLanguage('Python')">Python</a></li>
-                            <li><a href="#" onclick="changeLanguage('Swift')">Swift</a></li>
+                            <li><a href="#" onclick="changeLanguage('cpp', 'false')">C++</a></li>
+                            <li><a href="#" onclick="changeLanguage('CSS', 'false')">CSS</a></li>
+                            <li><a href="#" onclick="changeLanguage('HTML', 'false')">HTML</a></li>
+                            <li><a href="#" onclick="changeLanguage('Java', 'false')">Java</a></li>
+                            <li><a href="#" onclick="changeLanguage('JavaScript', 'false')">JavaScript</a></li>
+                            <li><a href="#" onclick="changeLanguage('Python', 'false')">Python</a></li>
+                            <li><a href="#" onclick="changeLanguage('Swift', 'false')">Swift</a></li>
                         </ul>
                     </div>
                 </h5>
@@ -91,7 +90,7 @@
                 </div>
                 <div style="margin-top: auto;" class="tooltip">
                     <a id="lang-doc" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img
-                            src="images/icons/js.svg" class="svg" id="lang-icon"></i></a>
+                            src="images/icons/javascript.svg" class="svg" id="lang-icon"></i></a>
                     <span class="tooltiptext">Open Docs</span>
                 </div>
                 <div class=" tooltip">
@@ -164,19 +163,12 @@
 </body>
 <script src="/editor-src/src/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
-    var editor = ace.edit("editor");
     var terminal = ace.edit("terminal");
     terminal.renderer.setShowGutter(false);
     terminal.renderer.setHighlightGutterLine(false);
     terminal.$mouseHandler.$focusWaitTimout = 0;
     terminal.setTheme("ace/theme/terminal");
-    editor.setTheme("ace/theme/dracula");
-    editor.session.setMode("ace/mode/javascript");
-    editor.setOptions({
-        enableBasicAutocompletion: true,
-        enableSnippets: true,
-        enableLiveAutocompletion: true
-    });
+    terminal.setReadOnly(true);
 </script>
 
 </html>
