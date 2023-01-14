@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f7c8be4779.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/login.css">
+    <title>codebook.dev - Log In</title>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="main">
+        <div class="title">
+            <h1 class="name"><span style="margin-right: 10px;">▶</span>codebook.dev</h1>
+            <h3 id="name"></h3>
+        </div>
+        <div class="login-form">
+            <form>
+                <h4>Log In</h4>
+                <div class="fields">
+                    <div class="box">
+                        <i id="user" class="fas fa-user"></i>
+                        <input id="email" type="text" placeholder="Email Address">
+                    </div>
+                    <div class="password-box">
+                        <div class="inner-box">
+                            <i id="lock" class="fas fa-lock"></i>
+                            <input id="password" type="text" placeholder="Password">
+                        </div>
+                        <p class="forgot">Forgot Password?</p>
+                    </div>
+                </div>
+                <button onclick="validateInput();">Log In</button>
+                <div class="social">
+                    <p>Or Sign In Using</p>
+                    <a href="github.com"><div class="github">
+                        <i class="fab fa-github"></i>
+                    </div></a>
+                </div>
+                <div class="bottom">
+                    <p>Don't have an account? <span class="accent">Get Started.</span></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="src/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="src/js/login.js"></script>
+</html>
