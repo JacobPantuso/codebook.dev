@@ -27,7 +27,7 @@ We do this by allowing users to code and execute the written code all within the
 
 ## Usage
 1. Visit the site linked below
-2. Enter your name
+2. Enter your name and follow the account creation steps
 3. Start coding!
 
 ## Installation
