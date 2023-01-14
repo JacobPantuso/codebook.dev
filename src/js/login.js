@@ -18,18 +18,10 @@ if (window.location.href.indexOf("?name=") == -1) {
   window.location.href = "/index.html";
 }
 
-// if the user is not logged in and the url contains code.html, redirect to index.html
-if (window.location.href.indexOf("code.html") != -1 && !netlifyIdentity.currentUser()) {
-  window.location.href = "/index.html";
-}
 
 netlifyIdentity.on("login", () => {
   // if the url contains ?name= and the user is logged in, redirect to code.html
   if (window.location.href.indexOf("?name=") != -1) {
     window.location.href = "/code.html";
   }
-});
-
-netlifyIdentity.on("logout", () => {
-  window.location.href = "/index.html";
 });
