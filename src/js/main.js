@@ -13,6 +13,14 @@ function checkContact() {
 function bootUp() {
     themeToggle();
     newTab("1");
+    // grab language from local storage
+    var language = localStorage.getItem("language");
+    console.log(language);
+    if (language == null) {
+        language = "javascript";
+    } else {
+        changeLanguage(language);
+    }
     /*scannerText = document.getElementById("scanner-text");
     checkmark = document.getElementById("checkmark");
     webpage = document.getElementById("webpage");
@@ -196,6 +204,7 @@ function newTab() {
     numOfTabs += 1;
     tabList.innerHTML += "<button id=\"" + numOfTabs + "\"><span onclick=\"changeTab(\'" + numOfTabs + "\')\">file.js</span><a onclick=\"closeTab(\'" + numOfTabs + "\')\"><i class=\"fa-solid fa-xmark tab-close-icon\"></i></a></button>";
     newSession(String(numOfTabs));
+    changeLanguage(localStorage.getItem("language"));
     changeTab(numOfTabs, "true");
 }
 
@@ -204,7 +213,6 @@ function newSession(name) {
     var ses = ace.createEditSession("// Edit Session " + name);
     sessions[name] = ses;
     editor.setSession(ses);
-    changeLanguage("JavaScript");
 }
 
 function closeTab(id) {
@@ -286,7 +294,7 @@ function changeLanguage(selection, tabChange) {
         "python": "ace/mode/python",
         "swift": "ace/mode/swift"
     };
-    if (selection == "HTML" || selection.toLowerCase() == "CSS") {
+    if (selection == "HTML" || selection == "CSS") {
         disableCompilation(selection);
     } else {
         enableCompilation();
@@ -297,6 +305,7 @@ function changeLanguage(selection, tabChange) {
     }
     changeDoc(selection);
     editor.session.setMode(lang[selection.toLowerCase()]);
+    localStorage.setItem("language", selection);
     language.style.display = "none";
     icon.classList.remove("active");
     if (tabChange == "false") { animateLangChange('success'); }
