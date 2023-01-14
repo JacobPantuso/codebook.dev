@@ -26,6 +26,10 @@ function bootUp() {
     } else {
         changeLanguage(language);
     }
+    // grab first name from netlify identity
+    var name = netlifyIdentity.currentUser().user_metadata.full_name.split(" ")[0];
+    document.getElementById("hey-there-code").innerHTML = "Hey " + name + "!<i class='fa-solid fa-hands-clapping'></i></i>";
+
     /*scannerText = document.getElementById("scanner-text");
     checkmark = document.getElementById("checkmark");
     webpage = document.getElementById("webpage");
