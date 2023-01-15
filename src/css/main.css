@@ -135,6 +135,8 @@ img {
     border-bottom: solid #00A3FF 1px;
 }
 
+/* Card CSS */
+
 .card-icons {
     font-size: 30px;
 }
@@ -146,7 +148,7 @@ img {
 }
 
 .card-container {
-    margin: 50px;
+    margin: 25px;
     width: 180px;
     background-color: rgb(50, 50, 50);
     padding: 2.5rem 2.5rem;
@@ -183,6 +185,14 @@ img {
     background-clip: text;
 }
 
+@media (max-width: 768px) {
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Code CSS */
 .name-form {
     margin-top: 1rem;
     line-height: 2rem;

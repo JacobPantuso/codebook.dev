@@ -15,7 +15,7 @@
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 
-<body onload="bootUp();">
+<body class="code.html">
     <!--<div id="webpage" class="main">
         <div id="scanner" class="browser-check">
             <div id="scanner-container" class="check-container">
@@ -52,9 +52,9 @@
                         <div class="settings-row">
                             <h5>Font Size</h5>
                                 <div class="font-size">
-                                    <a id="font-size-up" onclick="changeFontSize('up')"><i class="fa-solid fa-plus"></i></a>
+                                    <a id="font-size-up"><i class="fa-solid fa-plus"></i></a>
                                     <p id="font-size">12</p>
-                                    <a id="font-size-down" onclick="changeFontSize('down')"><i class="fa-solid fa-minus"></i></a>
+                                    <a id="font-size-down"><i class="fa-solid fa-minus"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -68,17 +68,16 @@
                 <h5 style="margin-top: 15px;">Selected Language: <span id="selected-lang"
                         class="accent">JavaScript</span></h5>
                 <h5>Supported Languages:
-                    <input id="myInput" type="text" class="language-search-bar" placeholder="Filter Languages"
-                        onkeyup="search()">
+                    <input id="myInput" type="text" class="language-search-bar" placeholder="Filter Languages">
                     <div class="language-list">
                         <ul id="lang-search">
-                            <li><a href="#" onclick="changeLanguage('cpp', 'false')">C++</a></li>
-                            <li><a href="#" onclick="changeLanguage('CSS', 'false')">CSS</a></li>
-                            <li><a href="#" onclick="changeLanguage('HTML', 'false')">HTML</a></li>
-                            <li><a href="#" onclick="changeLanguage('Java', 'false')">Java</a></li>
-                            <li><a href="#" onclick="changeLanguage('JavaScript', 'false')">JavaScript</a></li>
-                            <li><a href="#" onclick="changeLanguage('Python', 'false')">Python</a></li>
-                            <li><a href="#" onclick="changeLanguage('Swift', 'false')">Swift</a></li>
+                            <li><a href="#" id="cpp">C++</a></li>
+                            <li><a href="#" id="css">CSS</a></li>
+                            <li><a href="#" id="html">HTML</a></li>
+                            <li><a href="#" id="java">Java</a></li>
+                            <li><a href="#" id="javascript">JavaScript</a></li>
+                            <li><a href="#" id="python">Python</a></li>
+                            <li><a href="#" id="swift">Swift</a></li>
                         </ul>
                     </div>
                 </h5>
@@ -88,7 +87,7 @@
             <div class="theme-card">
                 <h3>Theme Selection</h3>
                 <div id="theme-toggle" class="light toggle">
-                    <input type="checkbox" id="toggle" onclick='themeToggle();' />
+                    <input type="checkbox" id="toggle"/>
                     <label for="toggle"></label>
                 </div>
                 <h5 style="margin-top: 15px;">Selected Theme: <span id="selected-theme" class="accent">Dracula</span>
@@ -96,7 +95,6 @@
                 <h5>Available Themes:</h5>
                 <div class="theme-list">
                     <ul id="theme-search">
-
                     </ul>
                 </div>
             </div>
@@ -105,15 +103,15 @@
             <div id="landing-bar" class="landing-toolbar">
                 <a><i class="fa-solid fa-bars-staggered"></i></a>
                 <div id="nav-settings" class="tooltip">
-                    <a onclick="toggleSetting('settings')"><i class="fa-solid fa-gear"></i></a>
+                    <a id="settings-btn" ><i class="fa-solid fa-gear"></i></a>
                     <span id="settings-tooltip" class="tooltiptext">Settings</span>
                 </div>
                 <div id="nav-language" class="tooltip">
-                    <a onclick="toggleSetting('language')"><i class="fa-solid fa-file-code"></i></a>
+                    <a id="lang-btn" ><i class="fa-solid fa-file-code"></i></a>
                     <span id="language-tooltip" class="tooltiptext">Language</span>
                 </div>
                 <div id="nav-theme" class="tooltip">
-                    <a onclick="toggleSetting('theme')"><i class="fa-solid fa-brush"></i></a>
+                    <a id="theme-btn" ><i class="fa-solid fa-brush"></i></a>
                     <span id="theme-tooltip" class="tooltiptext">Themes</span>
                 </div>
                 <div style="margin-top: auto;" class="tooltip">
@@ -134,7 +132,7 @@
                 <div class="landing-page-container">
                     <div class="editor-and-tab-container">
                         <div id="tab-list" class="tabs">
-                            <button onclick="newTab()" style="order: 1;">
+                            <button id="new-tab" tyle="order: 1;">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </div>
@@ -164,7 +162,7 @@
                                 if you inputted the file name
                                 correctly or you don’t have any syntactical errors in your file.
                             </p>
-                            <button onclick="hideInfoPopup()" class="landing-info-button"><i
+                            <button id="info-popup" class="landing-info-button"><i
                                     class="fa-solid fa-circle-xmark"></i></button>
                         </div>
                         <div id="terminal-hide" class="no-term">
@@ -189,9 +187,7 @@
         </div>
     </div>
 </body>
-<script src="src/js/main.js"></script>
-<script type="module" src="src/js/code.js"></script>
-<script type="module" src="src/js/modules.js"></script>
+<script type="module" src="src/js/main.js"></script>
 <script src="/editor-src/src/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var terminal = ace.edit("terminal");
