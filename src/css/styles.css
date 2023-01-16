@@ -356,7 +356,13 @@ p {
     gap: 1px;
 }
 
-.tabs button {
+.tab-bar-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+}
+
+.tab-bar-container button {
     margin: 0;
     background-color: #545972;
     color: white;
@@ -365,7 +371,7 @@ p {
     width: auto;
 }
 
-.tabs button:hover {
+.tab-bar-container button:hover {
     cursor: pointer;
 }
 
@@ -378,8 +384,12 @@ button.selectedtab {
     border-bottom: hidden;
 }
 
+.spacer {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
 .tab-close-icon {
-    margin-left: 0.5rem;
     font-size: 12px;
 }
 

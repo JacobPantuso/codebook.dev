@@ -1,3 +1,5 @@
+import { changeLanguage } from "./toolbar.js"
+
 export class Tab {
     constructor(id, name) {
         this.id = id;
@@ -5,8 +7,18 @@ export class Tab {
         this.extension = "js";
         this.selected = false;
         this.session = ace.createEditSession("// Edit Session " + name);
+        this.createTab();
+        changeLanguage("javascript", "true");
     }
-    
+
+    createTab() {
+        var tabList = document.getElementById("tab-list");
+        var el = document.createElement("button");
+        el.id = "tab-" + this.id;
+        el.innerHTML = "<span id=\"" + this.id + "\">file_" + this.id + "." + this.extension + "</span><span class='spacer'></span><a id=\"close-" + this.id + "\"><i class=\"fa-solid fa-xmark tab-close-icon\"></i></a>";
+        tabList.appendChild(el);
+    }
+
     changeName(name) {
         this.name = name;
     }
@@ -15,12 +27,40 @@ export class Tab {
         this.language = language;
     }
 
-    changeTab() {
-        this.selected = true;
+    changeTab(tabs) {
+        if (!(this.selected)) {
+            // Set this Tab to the Selected and Style
+            for (var index in tabs) {
+                if (tabs[index].isSelected()) {
+                    tabs[index].getElem().classList.remove("selectedtab");
+                    tabs[index].setSelected(false);
+                    break;
+                }
+            }
+            this.getElem().classList.add("selectedtab");
+            this.selected = true;
+            // Change the Sesssion of the Ace Editor
+            var editor = ace.edit("editor");
+            editor.setSession(this.session);
+
+            var lang = editor.session.$modeId;
+            var langName = lang.split("/").pop();
+            if (langName == "c_cpp") {
+                langName = "cpp";
+            }
+        }
     }
 
     getId() {
         return this.id;
+    }
+
+    getElem() {
+        return document.getElementById("tab-" + this.id);
+    }
+
+    getTab() {
+        return document.getElementById(this.id);
     }
 
     getName() {
@@ -31,7 +71,11 @@ export class Tab {
         return this.extension;
     }
 
-    getSelected() {
+    setSelected(bool) {
+        this.selected = bool;
+    }
+
+    isSelected() {
         return this.selected;
     }
 
@@ -40,45 +84,38 @@ export class Tab {
     }
 }
 
-
-function changeTab(button) {
-    var newTab = document.getElementById(button);
-    var oldTab = document.getElementsByClassName("selectedtab");
-
-    if (oldTab.length == 0) {
-        newTab.classList.add("selectedtab");
-    } else {
-        remTab = document.getElementsByClassName("selectedtab").item(0);
-        remTab.classList.remove("selectedtab");
-        newTab.classList.add("selectedtab");
-    }
-    var editor = ace.edit("editor");
-    editor.setSession(sessions[button]);
-    var lang = editor.session.$modeId;
-    var langName = lang.split("/").pop();
-    if (langName == "c_cpp") {
-        langName = "cpp";
-    }
-    changeDoc(langName, "false");
+export function createNewTab(tabs) {
+    var tab = new Tab((tabs.length + 1), "file_" + (tabs.length + 1));
+    tab.getTab().addEventListener("click", function () {
+        console.log("name has been clicked")
+        tab.changeTab(tabs)
+    });
+    document.getElementById("close-" + tab.getId()).addEventListener("click", function () {
+        console.log("close has been clicked")
+        closeTab(tab.getId(), tabs);
+    });
+    tab.getElem
+    tabs.push(tab);
+    tab.changeTab(tabs);
 }
 
-function newTab() {
-    if (numOfTabs <= 9) {
-        var tabList = document.getElementById("tab-list");
-        var language = localStorage.getItem("language");
-        if (language == "JavaScript") {
-            language = "js";
-        } else if (language == "Python") {
-            language = "py";
+export function closeTab(id, tabs) {
+    console.log("Closing Tab " + id);
+    var tab = null;
+
+    for (var index in tabs) {
+        if (tabs[index].getId() == id) {
+            tab = tabs[index];
+            var indexOfTab = index;
+            tabs.splice(index, 1);
         }
-        idOfTabs += 1;
-        numOfTabs += 1;
-        tabs.push(idOfTabs);
-        tabList.innerHTML += "<button id=\"" + idOfTabs + "\"><span onclick=\"changeTab(\'" + idOfTabs + "\')\">file_" + idOfTabs + "." + language.toLowerCase() + "</span><a onclick=\"closeTab(\'" + idOfTabs + "\')\"><i class=\"fa-solid fa-xmark tab-close-icon\"></i></a></button>";
-        newSession(String(idOfTabs));
-        changeLanguage(localStorage.getItem("language"));
-        changeTab(idOfTabs, "true");
     }
+
+    if (tab != null) {
+        document.getElementById("tab-" + id).remove();
+    }
+
+    tabs[0].changeTab(tabs);
 }
 
 function changeTabName(id, text) {
@@ -102,30 +139,6 @@ function getTabById(id) {
     for (index in tabs) {
         if (tabs[index].getId() == id) {
             return tabs[index];
-        }
-    }
-}
-
-function newSession(name) {
-    var editor = ace.edit("editor");
-    var ses = ace.createEditSession("// Edit Session " + name);
-    sessions[name] = ses;
-    editor.setSession(ses);
-}
-
-function closeTab(id) {
-    if (numOfTabs == 1) {
-
-    } else {
-        var flag = false;
-        if (document.getElementsByClassName("selectedtab")[0] == document.getElementById(id)) {
-            flag = true;
-        }
-        document.getElementById(id).remove();
-        tabs = tabs.filter(function (e) { return e != id })
-        numOfTabs -= 1;
-        if (flag) {
-            changeTab(tabs[0]);
         }
     }
 }

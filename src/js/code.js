@@ -1,10 +1,9 @@
 
 import * as toolbar from "./toolbar.js";
-import { Tab } from "./editor-tab.js";
 
 export function initialize() {
-    new Tab(0, "Untitled");
     if (localStorage.length != 0) {
+        // restore all tabs from local storage
         encrpytConnection(true);
         toolbar.toggleTheme();
     } else {
