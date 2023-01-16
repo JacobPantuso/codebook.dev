@@ -19,9 +19,8 @@ export function hideSetting() {
     }
 }
 
-export function themeToggle() {
+export function updateThemes(type) {
     var themeList = document.getElementById("theme-search");
-    // initiate a dictionairy where a theme and its corresponding ace theme is stored
     var themesDark = new Object();
     var themesDark = {
         "Ambiance": "ace/theme/ambiance",
@@ -54,46 +53,68 @@ export function themeToggle() {
         "Tomorrow": "ace/theme/tomorrow",
         "Xcode": "ace/theme/xcode"
     };
-    if (document.getElementById("theme-toggle").classList.contains("dark")) {
-        document.getElementById("theme-toggle").classList.remove("dark")
-        document.getElementById("theme-toggle").classList.add("light")
-        var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/clouds");
-        document.getElementById("selected-theme").innerHTML = "Clouds";
+    if (type == "light") {
         themeList.innerHTML = "";
-        // loop through twice to add all the themes to the list and add an event listener to each one in second for loop
-        // this is done to prevent the event listener from being added to the same element twice
         for (const [key, value] of Object.entries(themesLight)) {
             themeList.innerHTML += '<li><a href="#" id=\'' + key + '\'>' + key + '</a></li>';
         }
         for (const [key, value] of Object.entries(themesLight)) {
             document.getElementById(key).addEventListener('click', () => {
-                changeTheme(value, key)
+                changeTheme(value, key, "light")
               });        
         }
-    } else if (document.getElementById("theme-toggle").classList.contains("light")) {
-        document.getElementById("theme-toggle").classList.remove("light")
-        document.getElementById("theme-toggle").classList.add("dark")
-        var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/dracula");
-        document.getElementById("selected-theme").innerHTML = "Dracula";
+        if (localStorage.getItem("light-theme") == null) {
+            changeTheme("ace/theme/chrome", "Chrome", "light");
+        } else {
+            changeTheme(localStorage.getItem("light-theme"), localStorage.getItem("light-theme-name"), "light");
+        }
+    } else if (type == "dark") {
         themeList.innerHTML = "";
         for (const [key, value] of Object.entries(themesDark)) {
             themeList.innerHTML += '<li><a href="#" id=\'' + key + '\'>' + key + '</a></li>';
         }
         for (const [key, value] of Object.entries(themesDark)) {
             document.getElementById(key).addEventListener('click', () => {
-                changeTheme(value, key)
+                changeTheme(value, key, "dark")
               });        
+        }
+        if (localStorage.getItem("dark-theme") == null) {
+            changeTheme("ace/theme/dracula", "Dracula", "dark");
+        } else {
+            changeTheme(localStorage.getItem("dark-theme"), localStorage.getItem("dark-theme-name"), "dark");
         }
     }
 }
 
-export function changeTheme(theme, name) {
+export function toggleTheme() {
+    if (localStorage.getItem("theme-type") != null) {
+        if (document.getElementById("toggle").checked) {
+            updateThemes("light");
+        } else {
+            updateThemes("dark");
+        }
+    } else {
+        updateThemes("dark");
+    }
+}
+
+export function changeTheme(theme, name, type) {
+    console.log("Changing theme to " + name);
+    localStorage.removeItem("theme-name");
     var editor = ace.edit("editor");
     editor.setTheme(theme);
     document.getElementById("selected-theme").innerHTML = name;
-    hideSetting();
+    if (type == "light") {
+        localStorage.setItem("light-theme", theme);
+        localStorage.setItem("light-theme-name", name );
+    } else if (type == "dark") {
+        localStorage.setItem("dark-theme", theme);
+        localStorage.setItem("dark-theme-name", name );
+    }
+    localStorage.setItem("theme-type", type);
+    if (type == "") {
+        hideSetting();
+    }
 }
 
 export function search() {
@@ -130,9 +151,14 @@ export function toggleSetting(name) {
     }
 }
 
-export function changeFontSize(operation) {
+export function changeFontSize(operation, amount) {
+    var editor = ace.edit("editor");
+    if (amount != null && operation == "set") {
+        document.getElementById("font-size").innerHTML = amount;
+        editor.setOptions({ fontSize: amount + "px"})
+        return;
+    }
     var fontSize = document.getElementById("font-size").innerHTML;
-    // if fontSize is 10 then don't go down anymore and if fontSize is 30 then don't go up anymore and set plus or minus to red respectively
     if (fontSize == 10 && operation == "down") {
         document.getElementById("font-size-down").style.color = "red";
         return;
@@ -149,7 +175,6 @@ export function changeFontSize(operation) {
         fontSize--;
     }
     document.getElementById("font-size").innerHTML = fontSize;
-    var editor = ace.edit("editor");
     editor.setOptions({ fontSize: fontSize + "px" });
 }
 

@@ -474,7 +474,7 @@ button.selectedtab {
 .selection-card {
     margin-top: 50px;
     margin-left: 10px;
-    width: 15%;
+    max-width: 15%;
     height: 35%;
     background-color: #1c1c1c;
     padding: 2rem 2rem;
@@ -549,7 +549,7 @@ button.selectedtab {
 /* Themes Menu */
 
 .theme-selection {
-    display: none;
+    display: flex;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -561,8 +561,8 @@ button.selectedtab {
 .theme-card {
     margin-top: 80px;
     margin-left: 10px;
-    width: 15%;
-    height: 35%;
+    width: 18%;
+    height: 40%;
     background-color: #1c1c1c;
     padding: 2rem 2rem;
     border-radius: 25px;

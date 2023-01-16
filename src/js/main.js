@@ -17,8 +17,14 @@ if (document.getElementsByClassName("contact.html")[0]) {
 
 if (document.getElementsByClassName("code.html")[0]) {
     document.getElementsByClassName("code.html")[0].addEventListener("onload", code.initialize());
-    document.getElementById("font-size-up").addEventListener('click', () => {toolbar.changeFontSize("up")});
-    document.getElementById("font-size-down").addEventListener('click', () => {toolbar.changeFontSize("down")});
+    document.getElementById("font-size-up").addEventListener('click', () => {
+        toolbar.changeFontSize("up")
+        localStorage.setItem("fontSize", document.getElementById("font-size").innerHTML);
+    });
+    document.getElementById("font-size-down").addEventListener('click', () => {
+        toolbar.changeFontSize("down")
+        localStorage.setItem("fontSize", document.getElementById("font-size").innerHTML);
+    });
     document.getElementById("settings-btn").addEventListener('click', () => {toolbar.toggleSetting("settings")});
     document.getElementById("info-popup").addEventListener('click', () => {toolbar.hideInfoPopup()});
     document.getElementById("lang-btn").addEventListener('click', () => {toolbar.toggleSetting("language")});
@@ -31,7 +37,9 @@ if (document.getElementsByClassName("code.html")[0]) {
     document.getElementById("css").addEventListener('click', () => {toolbar.changeLanguage("CSS", "false")});
     document.getElementById("javascript").addEventListener('click', () => {toolbar.changeLanguage("JavaScript", "false")});
     document.getElementById("theme-btn").onclick = function(){toolbar.toggleSetting("theme")};
-    document.getElementById("toggle").onclick = function(){toolbar.themeToggle()};
+    document.getElementById("toggle").addEventListener('click', () => {
+        toolbar.toggleTheme();
+    });
 }
 
 

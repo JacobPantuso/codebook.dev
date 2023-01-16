@@ -14,7 +14,11 @@ export class Tab {
     changeLanguage(language) {
         this.language = language;
     }
-    
+
+    changeTab() {
+        this.selected = true;
+    }
+
     getId() {
         return this.id;
     }
