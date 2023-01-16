@@ -105,6 +105,17 @@ img {
     margin-top: 5px;
 }
 
+.enabled {
+    background-color: #2a5e2c;
+    pointer-events: all;
+}
+
+.enabled:hover {
+    background-color: #4CAF50;
+    transform: scale(1.1);
+    transition: 1s;
+}
+
 .name-box {
     background-color: transparent;
     width: 9.5rem;

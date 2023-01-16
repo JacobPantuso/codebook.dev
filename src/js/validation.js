@@ -6,14 +6,13 @@ Created by: Jacob Pantuso and Teo Cristoiu
 
 export function checkSubmit() {
     var name = document.getElementById("name").value;
+    console.log(name);
     var submit = document.getElementById("submit");
     if (name != "") {
-        submit.style.backgroundColor = "#4CAF50";
-        submit.style.pointerEvents = "all";
         submit.removeAttribute("disabled");
+        submit.classList.add("enabled");
     } else {
-        submit.style.backgroundColor = "red";
-        submit.style.pointerEvents = "none";
+        submit.classList.remove("enabled");
     }
 }
 

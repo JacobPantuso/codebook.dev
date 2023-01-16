@@ -9,7 +9,7 @@ if (window.location.href.indexOf("#") > -1) {
 }
 
 if (document.getElementsByClassName("index.html")[0]) {
-    document.getElementById("index-form").addEventListener("change", () => { validation.checkSubmit() });
+    document.getElementById("index-form").addEventListener("keyup", () => { validation.checkSubmit() });
 }
 
 if (document.getElementsByClassName("contact.html")[0]) {
