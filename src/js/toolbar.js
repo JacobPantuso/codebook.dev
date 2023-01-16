@@ -208,6 +208,11 @@ export function changeLanguage(selection, tabChange) {
     var icon = document.getElementById("nav-language");
     var editor = ace.edit("editor");
     var text = document.getElementById("lang-change-text");
+    // Uppercase first letter
+    selection = selection.charAt(0).toUpperCase() + selection.slice(1);
+    if (selection.toLowerCase() == "javascript") {
+        selection = "JavaScript";
+    }
     currLang.innerHTML = selection;
     text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to ' + selection;
     var lang = new Object();
