@@ -1,5 +1,5 @@
 <br>
-<p align=center><img src=""></p>
+<p align=center><img src="images/logo.png"></p>
 <hr>
 <p align=center><i>this is a placeholder repo that will not contain source files until a stable build is established</i></p>
 
