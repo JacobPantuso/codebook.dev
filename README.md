@@ -1,9 +1,9 @@
 <br>
 <p align=center><img src="images/logo.png"></p>
 <hr>
-<p align=center><i>this is a placeholder repo that will not contain source files until a stable build is established</i></p>
+<p align=center><i>this repo will contain <code>pre-release</code> source files until a stable build is established</i></p>
 
-<p align=center>The current version of the repository is: <strong>PRE-ALPHA</strong></p>
+<p align=center>The current version of the repository is: <strong>PRE-RELEASE</strong></p>
 
 ## Description
 Our mission at **codebook.dev** is to make coding **online** easier.
