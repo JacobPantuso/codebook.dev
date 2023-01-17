@@ -38,6 +38,7 @@ We do this by allowing users to code and execute the written code all within the
 ## Installation
 The website is live at https://www.codebook.dev/index.html <br>*note: compilation features are not working at the moment since it is not completed*
 ## Documentation
+The documentation can be viewed at https://www.codebook.dev/docs/index.html
 ## Library, Frameworks, and Tools
 
 ### [*Netlify*](https://www.netlify.com/)
