@@ -1,0 +1,18 @@
+html, body {
+    color: white;
+}
+
+hr {
+    border-top: 1px solid rgb(255 255 255 / 39%);
+}
+
+.color {
+    background: -webkit-linear-gradient(180deg, #FF0000 -8.55%, #FF007A 17.53%, #C323FF 48.36%, #5E6CFF 79.18%, #00A3FF 105.26%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.accent {
+    color: #00A3FF;
+}
