@@ -8,7 +8,6 @@ export class Tab {
         this.selected = false;
         this.session = ace.createEditSession("// Edit Session " + name);
         this.createTab();
-        changeLanguage("javascript", "true");
     }
 
     createTab() {
@@ -87,16 +86,15 @@ export class Tab {
 export function createNewTab(tabs) {
     var tab = new Tab((tabs.length + 1), "file_" + (tabs.length + 1));
     tab.getTab().addEventListener("click", function () {
-        console.log("name has been clicked")
         tab.changeTab(tabs)
     });
     document.getElementById("close-" + tab.getId()).addEventListener("click", function () {
-        console.log("close has been clicked")
         closeTab(tab.getId(), tabs);
     });
     tab.getElem
     tabs.push(tab);
     tab.changeTab(tabs);
+    changeLanguage("javascript", "true")
 }
 
 export function closeTab(id, tabs) {
