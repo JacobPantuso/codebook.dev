@@ -1,9 +1,9 @@
 <br>
 <p align=center><img src="images/logo.png"></p>
 <hr>
-<p align=center><i>this is a placeholder repo that will not contain source files until a stable build is established</i></p>
+<p align=center><i>this repo will contain <code>pre-release</code> source files until a stable build is established</i></p>
 
-<p align=center>The current version of the repository is: <strong>PRE-ALPHA</strong></p>
+<p align=center>The current version of the repository is: <strong>PRE-RELEASE</strong></p>
 
 ## Description
 Our mission at **codebook.dev** is to make coding **online** easier.
@@ -42,7 +42,7 @@ The documentation can be viewed at https://www.codebook.dev/docs/index.html
 ## Library, Frameworks, and Tools
 
 ### [*Netlify*](https://www.netlify.com/)
-Netlify allows us to deploy our website in record time and bring our project to you. Netlify also provides us with their authentication protol to smoothly incorporate user accounts and validation. Their resources can be found [here](https://www.netlify.com/) to start building your own websites for free/payed.
+Netlify allows us to deploy our website in record time and bring our project to you. Netlify also provides us with their authentication protocol to smoothly incorporate user accounts and validation. Their resources can be found [here](https://www.netlify.com/) to start building your own websites for free/payed.
 
 ### [*Ace Editor*](https://ace.c9.io/)
 For Syntax Highlighting and the In-Window Terminal / Code Editor, we utilized Ace editor. It is a embeddable code editor written in JavaScript that can be found [here](https://ace.c9.io/). A guide on the framework can be found [here](https://ace.c9.io/#nav=howto) and the API Reference can be retrieved from the website highlighted earlier. 
