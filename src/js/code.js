@@ -1,13 +1,14 @@
 
 import * as toolbar from "./toolbar.js";
 import * as tabFunc from "./editor-tab.js";
+import API_KEY from "./api.js";
 
 export function compile(tabs) {
     var currTab = tabFunc.getCurrentTab(tabs);
     console.log(currTab);
     var code = currTab.getSession().getValue();
     console.log(code);
-    console.log(process.env.api_key);
+    console.log(API_KEY);
     
     /*const axios = require("axios");
 
