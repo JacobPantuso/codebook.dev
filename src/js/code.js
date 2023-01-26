@@ -1,6 +1,7 @@
 
 import * as toolbar from "./toolbar.js";
 import * as tabFunc from "./editor-tab.js";
+import axios from "./npm/node_modules/axios";
 import API_KEY from "./api.js";
 
 export function compile(tabs) {
@@ -8,9 +9,8 @@ export function compile(tabs) {
     console.log(currTab);
     var code = currTab.getSession().getValue();
     console.log(code);
-    console.log(API_KEY);
     
-    /*const axios = require("axios");
+    const axios = require("axios");
 
     const options = {
     method: 'POST',
@@ -19,7 +19,7 @@ export function compile(tabs) {
     headers: {
         'content-type': 'application/json',
         'Content-Type': 'application/json',
-        'X-RapidAPI-Key': process.env.api_key,
+        'X-RapidAPI-Key': API_KEY,
         'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
     },
     data: '{"language_id":63,"source_code":'+ code +'}'
@@ -29,7 +29,7 @@ export function compile(tabs) {
         console.log(response.data);
     }).catch(function (error) {
         console.error(error);
-    });*/
+    });
 }
 
 export function initialize() {
