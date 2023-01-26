@@ -1,7 +1,7 @@
 
 import * as toolbar from "./toolbar.js";
 import * as tabFunc from "./editor-tab.js";
-import axios from "./npm/node_modules/axios";
+import axios from './npm/node_modules/axios';
 import API_KEY from "./api.js";
 
 export function compile(tabs) {
@@ -9,20 +9,20 @@ export function compile(tabs) {
     console.log(currTab);
     var code = currTab.getSession().getValue();
     console.log(code);
-    
+
     const axios = require("axios");
 
     const options = {
-    method: 'POST',
-    url: 'https://judge0-ce.p.rapidapi.com/submissions',
-    params: {base64_encoded: 'true', fields: '*'},
-    headers: {
-        'content-type': 'application/json',
-        'Content-Type': 'application/json',
-        'X-RapidAPI-Key': API_KEY,
-        'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
-    },
-    data: '{"language_id":63,"source_code":'+ code +'}'
+        method: 'POST',
+        url: 'https://judge0-ce.p.rapidapi.com/submissions',
+        params: { base64_encoded: 'true', fields: '*' },
+        headers: {
+            'content-type': 'application/json',
+            'Content-Type': 'application/json',
+            'X-RapidAPI-Key': API_KEY,
+            'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
+        },
+        data: '{"language_id":63,"source_code":' + code + '}'
     };
 
     axios.request(options).then(function (response) {
@@ -58,8 +58,8 @@ export function encrpytConnection(previousVisitor) {
         setTimeout(function () {
             document.getElementById("scanner-container").style.width = "39%";
             scannerText.innerHTML = "Checking your browser for <span class=\"color\">codebook.dev</span> personalization.";
-            toolbar.changeFontSize("set",localStorage.getItem("fontSize"));
-            if (localStorage.getItem("theme")!=null) toolbar.changeTheme(localStorage.getItem("theme"), localStorage.getItem("theme-name"), localStorage.getItem("theme-type"));
+            toolbar.changeFontSize("set", localStorage.getItem("fontSize"));
+            if (localStorage.getItem("theme") != null) toolbar.changeTheme(localStorage.getItem("theme"), localStorage.getItem("theme-name"), localStorage.getItem("theme-type"));
             var language = localStorage.getItem("language");
             if (language == null) {
                 language = "javascript";
