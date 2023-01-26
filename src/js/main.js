@@ -46,6 +46,7 @@ if (document.getElementsByClassName("code.html")[0]) {
     // Tab Switching
         var tabs = [];
         tabfunc.createNewTab(tabs);
+        document.getElementById("run-btn").addEventListener('click', () => {code.compile(tabs)});
         document.getElementById("new-tab").addEventListener('click', () => {
             tabfunc.createNewTab(tabs);
         });

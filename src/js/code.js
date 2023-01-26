@@ -1,5 +1,35 @@
 
 import * as toolbar from "./toolbar.js";
+import * as tabFunc from "./editor-tab.js";
+
+export function compile(tabs) {
+    var currTab = tabFunc.getCurrentTab(tabs);
+    console.log(currTab);
+    var code = currTab.getSession().getValue();
+    console.log(code);
+    console.log(process.env.api_key);
+    
+    /*const axios = require("axios");
+
+    const options = {
+    method: 'POST',
+    url: 'https://judge0-ce.p.rapidapi.com/submissions',
+    params: {base64_encoded: 'true', fields: '*'},
+    headers: {
+        'content-type': 'application/json',
+        'Content-Type': 'application/json',
+        'X-RapidAPI-Key': process.env.api_key,
+        'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
+    },
+    data: '{"language_id":63,"source_code":'+ code +'}'
+    };
+
+    axios.request(options).then(function (response) {
+        console.log(response.data);
+    }).catch(function (error) {
+        console.error(error);
+    });*/
+}
 
 export function initialize() {
     if (localStorage.length != 0) {

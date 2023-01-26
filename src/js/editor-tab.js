@@ -160,3 +160,12 @@ export function enableCompilation() {
     terminal.style.display = "flex";
     termHide.style.display = "none";
 }
+
+export function getCurrentTab(tabs) {
+    for (var index in tabs) {
+        if (tabs[index].isSelected) {
+            return tabs[index];
+        }
+    }
+    return null;
+}
