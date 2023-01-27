@@ -137,6 +137,8 @@
             <div class="code">
                 <div class="landing-nav">
                     <a style="font-size: 18px;" href="index.html" class="color">codebook.dev</a>
+                    <div class="lds-dual-ring"></div>
+                    <p>Compiling Code</p>
                     <a id="run-btn" class="run-btn"><i class="fa-solid fa-play"></i> Run</a>
                 </div>
                 <div class="landing-page-container">
@@ -199,8 +201,11 @@
         </div>
     </div>
 </body>
+<script src="/editor/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="/editor/ext-language_tools.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 <script type="module" src="src/js/main.js"></script>
-<script src="/editor-src/src/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var terminal = ace.edit("terminal");
     terminal.renderer.setShowGutter(false);

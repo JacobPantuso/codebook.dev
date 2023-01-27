@@ -1,7 +1,5 @@
-
 import * as toolbar from "./toolbar.js";
 import * as tabFunc from "./editor-tab.js";
-import axios from './npm/node_modules/axios';
 import API_KEY from "./api.js";
 
 export function compile(tabs) {
@@ -9,27 +7,65 @@ export function compile(tabs) {
     console.log(currTab);
     var code = currTab.getSession().getValue();
     console.log(code);
+    const submit = async (e) => {
+        console.log("Creating Submission ...\n");
+        const response = await fetch(
+            "https://judge0-ce.p.rapidapi.com/submissions",
+            {
+                method: "POST",
+                headers: {
+                    "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
+                    "x-rapidapi-key": API_KEY, // Get yours for free at https://rapidapi.com/judge0-official/api/judge0-ce/
+                    "content-type": "application/json",
+                    accept: "application/json",
+                },
+                body: JSON.stringify({
+                    source_code: code,
+                    stdin: "",
+                    language_id: '63',
+                }),
+            }
+        );
 
-    const axios = require("axios");
+        console.log("Submission Created ...\n");
+        const jsonResponse = await response.json();
+        let jsonGetSolution = {
+            status: { description: "Queue" },
+            stderr: null,
+            compile_output: null,
+        };
+        while (
+            jsonGetSolution.status.description !== "Accepted" &&
+            jsonGetSolution.stderr == null &&
+            jsonGetSolution.compile_output == null
+        ) {
+            console.log(`Creating Submission ... \nSubmission Created ...\nChecking Submission Status\nstatus : ${jsonGetSolution.status.description}`);
+            if (jsonResponse.token) {
+                let url = `https://judge0-ce.p.rapidapi.com/submissions/${jsonResponse.token}?base64_encoded=true`;
+                const getSolution = await fetch(url, {
+                    method: "GET",
+                    headers: {
+                        "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
+                        "x-rapidapi-key": API_KEY, // Get yours for free at https://rapidapi.com/judge0-official/api/judge0-ce/
+                        "content-type": "application/json",
+                    },
+                });
+                jsonGetSolution = await getSolution.json();
+            }
+        }
 
-    const options = {
-        method: 'POST',
-        url: 'https://judge0-ce.p.rapidapi.com/submissions',
-        params: { base64_encoded: 'true', fields: '*' },
-        headers: {
-            'content-type': 'application/json',
-            'Content-Type': 'application/json',
-            'X-RapidAPI-Key': API_KEY,
-            'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
-        },
-        data: '{"language_id":63,"source_code":' + code + '}'
+        if (jsonGetSolution.stdout) {
+            const output = atob(jsonGetSolution.stdout);
+            console.log(`Results :\n${output}\nExecution Time : ${jsonGetSolution.time} Secs\nMemory used : ${jsonGetSolution.memory} bytes`);
+        } else if (jsonGetSolution.stderr) {
+            const error = atob(jsonGetSolution.stderr);
+            console.log(`\n Error :${error}`);
+        } else {
+            const compilation_error = atob(jsonGetSolution.compile_output);
+            console.log(`\n Error :${compilation_error}`);
+        }
     };
-
-    axios.request(options).then(function (response) {
-        console.log(response.data);
-    }).catch(function (error) {
-        console.error(error);
-    });
+    submit();
 }
 
 export function initialize() {

@@ -1,4 +1,5 @@
 import { changeLanguage } from "./toolbar.js"
+ace.require("ace/ext/language_tools");
 
 export class Tab {
     constructor(id, name) {
@@ -7,6 +8,9 @@ export class Tab {
         this.extension = "js";
         this.selected = false;
         this.session = ace.createEditSession("// Edit Session " + name);
+        this.session.setOptions({
+            enableLiveAutocompletion : true
+        })
         this.createTab();
     }
 

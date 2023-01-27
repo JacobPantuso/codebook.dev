@@ -61,7 +61,7 @@ export function updateThemes(type) {
         for (const [key, value] of Object.entries(themesLight)) {
             document.getElementById(key).addEventListener('click', () => {
                 changeTheme(value, key, "light")
-              });        
+            });
         }
         if (localStorage.getItem("light-theme") == null) {
             changeTheme("ace/theme/chrome", "Chrome", "light");
@@ -76,7 +76,7 @@ export function updateThemes(type) {
         for (const [key, value] of Object.entries(themesDark)) {
             document.getElementById(key).addEventListener('click', () => {
                 changeTheme(value, key, "dark")
-              });        
+            });
         }
         if (localStorage.getItem("dark-theme") == null) {
             changeTheme("ace/theme/dracula", "Dracula", "dark");
@@ -106,10 +106,10 @@ export function changeTheme(theme, name, type) {
     document.getElementById("selected-theme").innerHTML = name;
     if (type == "light") {
         localStorage.setItem("light-theme", theme);
-        localStorage.setItem("light-theme-name", name );
+        localStorage.setItem("light-theme-name", name);
     } else if (type == "dark") {
         localStorage.setItem("dark-theme", theme);
-        localStorage.setItem("dark-theme-name", name );
+        localStorage.setItem("dark-theme-name", name);
     }
     localStorage.setItem("theme-type", type);
     if (type == "") {
@@ -155,7 +155,7 @@ export function changeFontSize(operation, amount) {
     var editor = ace.edit("editor");
     if (amount != null && operation == "set") {
         document.getElementById("font-size").innerHTML = amount;
-        editor.setOptions({ fontSize: amount + "px"})
+        editor.setOptions({ fontSize: amount + "px" })
         return;
     }
     var fontSize = document.getElementById("font-size").innerHTML;

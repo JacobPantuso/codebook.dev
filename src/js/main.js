@@ -17,7 +17,7 @@ if (document.getElementsByClassName("contact.html")[0]) {
 }
 
 if (document.getElementsByClassName("code.html")[0]) {
-    document.getElementsByClassName("code.html")[0].addEventListener("onload", 
+    document.getElementsByClassName("code.html")[0].addEventListener("onload",
         code.initialize()
     );
     document.getElementById("font-size-up").addEventListener('click', () => {
@@ -44,12 +44,12 @@ if (document.getElementsByClassName("code.html")[0]) {
         toolbar.toggleTheme();
     });
     // Tab Switching
-        var tabs = [];
+    var tabs = [];
+    tabfunc.createNewTab(tabs);
+    document.getElementById("run-btn").addEventListener('click', () => { code.compile(tabs) });
+    document.getElementById("new-tab").addEventListener('click', () => {
         tabfunc.createNewTab(tabs);
-        document.getElementById("run-btn").addEventListener('click', () => {code.compile(tabs)});
-        document.getElementById("new-tab").addEventListener('click', () => {
-            tabfunc.createNewTab(tabs);
-        });
+    });
     //
 }
 
