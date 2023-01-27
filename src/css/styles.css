@@ -270,6 +270,56 @@ p {
     margin-bottom: 0px;
   }
 
+  .compile-success-text {
+    animation: breathe-green 4s infinite;
+  }
+
+  @keyframes breathe-green {
+    0% {
+      color: #ffffff;
+    }
+    50% {
+      color: #00FF00;
+    }
+    100% {
+      color: #ffffff;
+    }
+  }
+
+  .compile-error-text {
+    animation: breathe-red 4s infinite;
+  }
+
+@keyframes breathe-red {
+    0% {
+      color: #ffffff;
+    }
+    50% {
+      color: #FF0000;
+    }
+    100% {
+      color: #ffffff;
+    }
+  }
+
+  #code-compile-status {
+    display: none;
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  #code-compile-status i {
+    margin-top: 4px;
+  }
+
+  #compile-success {
+    display: none;
+  }
+
+  #compile-error {
+    display: none;
+  }
+
   @keyframes lds-dual-ring {
     0% {
       transform: rotate(0deg);

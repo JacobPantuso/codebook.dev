@@ -7,6 +7,12 @@ export function compile(tabs) {
     console.log(currTab);
     var code = currTab.getSession().getValue();
     console.log(code);
+    document.getElementById("code-compile-status").style.display = "flex";
+    document.getElementById("compile-loader").style.display = "flex";
+    document.getElementById("compile-success").style.display = "none";
+    document.getElementById("compile-error").style.display = "none";
+    document.getElementById("compile-status-text").className = "";
+    document.getElementById("compile-status-text").innerHTML = "Compiling Code...";
     const submit = async (e) => {
         console.log("Creating Submission ...\n");
         const response = await fetch(
@@ -56,12 +62,24 @@ export function compile(tabs) {
 
         if (jsonGetSolution.stdout) {
             const output = atob(jsonGetSolution.stdout);
+            document.getElementById("compile-loader").style.display = "none";
+            document.getElementById("compile-success").style.display = "flex";
+            document.getElementById("compile-status-text").innerHTML = "Compilation Successful";
+            document.getElementById("compile-status-text").className = "compile-success-text";
             console.log(`Results :\n${output}\nExecution Time : ${jsonGetSolution.time} Secs\nMemory used : ${jsonGetSolution.memory} bytes`);
         } else if (jsonGetSolution.stderr) {
             const error = atob(jsonGetSolution.stderr);
+            document.getElementById("compile-loader").style.display = "none";
+            document.getElementById("compile-error").style.display = "flex";
+            document.getElementById("compile-status-text").innerHTML = "Compilation Failed";
+            document.getElementById("compile-status-text").className = "compile-error-text";
             console.log(`\n Error :${error}`);
         } else {
             const compilation_error = atob(jsonGetSolution.compile_output);
+            document.getElementById("compile-loader").style.display = "none";
+            document.getElementById("compile-error").style.display = "flex";
+            document.getElementById("compile-status-text").className = "compile-error-text";
+            document.getElementById("compile-status-text").innerHTML = "Compilation Failed";
             console.log(`\n Error :${compilation_error}`);
         }
     };

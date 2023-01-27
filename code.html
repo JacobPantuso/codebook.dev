@@ -137,8 +137,12 @@
             <div class="code">
                 <div class="landing-nav">
                     <a style="font-size: 18px;" href="index.html" class="color">codebook.dev</a>
-                    <div class="lds-dual-ring"></div>
-                    <p>Compiling Code</p>
+                    <div id="code-compile-status">
+                        <div class="lds-dual-ring" id="compile-loader"></div>
+                        <i class="fa-solid fa-check-circle" id="compile-success" style="color: rgb(54, 195, 54);"></i>
+                        <i class="fa-solid fa-times-circle" id="compile-error" style="color: rgb(195, 54, 54);"></i>
+                        <p id="compile-status-text">Compiling Code</p>
+                    </div>
                     <a id="run-btn" class="run-btn"><i class="fa-solid fa-play"></i> Run</a>
                 </div>
                 <div class="landing-page-container">
