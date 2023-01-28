@@ -4,9 +4,9 @@ import API_KEY from "./api.js";
 
 export function compile(tabs) {
     var currTab = tabFunc.getCurrentTab(tabs);
-    console.log(currTab);
     var code = currTab.getSession().getValue();
     console.log(code);
+    var input = document.getElementById("stdin").value;
     document.getElementById("code-compile-status").style.display = "flex";
     document.getElementById("compile-loader").style.display = "flex";
     document.getElementById("compile-success").style.display = "none";
@@ -27,8 +27,8 @@ export function compile(tabs) {
                 },
                 body: JSON.stringify({
                     source_code: code,
-                    stdin: "",
-                    language_id: '63',
+                    stdin: input,
+                    language_id: '71',
                 }),
             }
         );
@@ -64,32 +64,50 @@ export function compile(tabs) {
             const output = atob(jsonGetSolution.stdout);
             document.getElementById("compile-loader").style.display = "none";
             document.getElementById("compile-success").style.display = "flex";
-            document.getElementById("compile-status-text").innerHTML = "Compilation Successful";
+            document.getElementById("compile-status-text").innerHTML = "Execution Successful";
             document.getElementById("compile-status-text").className = "compile-success-text";
             var stats = document.getElementById("code-stats");
             stats.innerHTML = 'Your code executed in <span class="accent">' + jsonGetSolution.time + ' seconds</span> and used <span class="accent">' + jsonGetSolution.memory + ' bytes</span> of memory.';
             var terminal = ace.edit("terminal");
-            terminal.setValue("▶ user.io@shell: ~$ Code Executed! Here is the output:\n" + output + "\n▶ user.io@shell: ~$");
+            terminal.setValue("▶ user.io@shell: ~$\n" + output + "\n▶ user.io@shell: ~$");
             console.log(`Results :\n${output}\nExecution Time : ${jsonGetSolution.time} Secs\nMemory used : ${jsonGetSolution.memory} bytes`);
         } else if (jsonGetSolution.stderr) {
             const error = atob(jsonGetSolution.stderr);
             document.getElementById("compile-loader").style.display = "none";
             document.getElementById("compile-error").style.display = "flex";
-            document.getElementById("compile-status-text").innerHTML = "Compilation Failed";
+            document.getElementById("compile-status-text").innerHTML = "Execution Failed";
             document.getElementById("compile-status-text").className = "compile-error-text";
             var stats = document.getElementById("code-stats");
             stats.innerHTML = 'Your code failed to execute. Check the console for more details. This may be due to a syntax error or a runtime error.'
+            var terminal = ace.edit("terminal");
+            terminal.setValue("▶ user.io@shell: ~$\n" + error + "\n▶ user.io@shell: ~$");
             console.log(`\n Error :${error}`);
         } else {
             const compilation_error = atob(jsonGetSolution.compile_output);
             document.getElementById("compile-loader").style.display = "none";
             document.getElementById("compile-error").style.display = "flex";
             document.getElementById("compile-status-text").className = "compile-error-text";
-            document.getElementById("compile-status-text").innerHTML = "Compilation Failed";
+            document.getElementById("compile-status-text").innerHTML = "Execution Failed";
             var stats = document.getElementById("code-stats");
             stats.innerHTML = '<span class="color">codebook.dev</span> compiler failed to understand your code. Did you submit valid code for the selected language? If you are still having issues please visit our <a href="https://www.codebook.dev/docs/index.html"><span class="accent">Docs</span></a> for more support.'
+            var terminal = ace.edit("terminal");
+            terminal.setValue("▶ user.io@shell: ~$\n" + compilation_error + "\n▶ user.io@shell: ~$");
             console.log(`\n Error :${compilation_error}`);
         }
+        // delete the submission
+        const deleteSubmission = await fetch(
+            `https://judge0-ce.p.rapidapi.com/submissions/${jsonResponse.token}`,
+            {
+                method: "DELETE",
+                headers: {
+                    "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
+                    "x-rapidapi-key": API_KEY, // Get yours for free at https://rapidapi.com/judge0-official/api/judge0-ce/
+                    "content-type": "application/json",
+                },
+            }
+        );
+        console.log("Submission Deleted");
+        deleteSubmission();
     };
     submit();
 }

@@ -16,3 +16,9 @@ hr {
 .accent {
     color: #00A3FF;
 }
+
+.text-author {
+    margin-top: -10px;
+    font-size: 12px;
+    color: #00A3FF;
+}

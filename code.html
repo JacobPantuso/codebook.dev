@@ -59,6 +59,10 @@
                             </form>
                             <span id="action-tooltip" class="action-tooltiptext">Import Code</span>
                         </div>
+                        <div class="action-tooltip">
+                            <a><i id="editor-mode" class="action fa-solid fa-i-cursor"></i></a>
+                            <span id="vim-mode" class="action-tooltiptext">Enable VIM</span>
+                        </div>
                     </div>
                     <div class="settings-col">
                         <div class="settings-row">
@@ -210,19 +214,40 @@
                     </div>
                     <div class="landing-info-terminal-container">
                         <div id="info" class="landing-info">
-                            <h1 id="hey-there-code" class=""><i class="fa-solid fa-hands-clapping"></i></i></h1>
-                            <h2 class="accent">Code Stats:</h2>
-                            <p id="code-stats" style="color:rgb(236, 236, 236);">You have not compiled any code yet, but
-                                you can do so
-                                by
-                                clicking the
-                                <span class="accent">Run</span> button in the top-right corner.
-                            </p>
-                            <h2 class="accent">Standard IN / User Input:</h2>
-                            <p style="color:rgb(236, 236, 236);">You don't have uesr-input (stdin) enabled, but you can
-                                enable
-                                it in the Settings pane.
-                            </p>
+                            <div id="stdin-help" class="overlay-landing-info">
+                                <i class="fa-solid fa-times" id="close-info"></i>
+                                <h4>STDIN on <span class="color">codebook.dev</span></h4>
+                                <hr>
+                                <p>
+                                    Since you as a user does not have full access to the terminal, 
+                                    you'll need to specify your inputs before you execute your code. When 
+                                    you enable <span class="color">STDIN</span> in the settings menu, you'll be able to
+                                    specify your inputs in the <span class="accent">Standard IN / User Input</span> box.
+                                    <br><br>
+                                    <span class="badge badge-danger">Warning</span><br> If you attempt to ask for input in your code, and specify an input string, you will
+                                    receive an error. This is because the code is executed in a sandboxed environment, and
+                                    does not have access to the terminal.
+                                </p>
+                            </div>
+                            <div id="landing-info-cont" class="landing-info-container">
+                                <h1 id="hey-there-code" class=""><i class="fa-solid fa-hands-clapping"></i></i></h1>
+                                <h2 class="accent">Code Stats</h2>
+                                <p id="code-stats" style="color:rgb(236, 236, 236);">You have not compiled any code yet, but
+                                    you can do so
+                                    by
+                                    clicking the
+                                    <span class="accent">Run</span> button in the top-right corner.
+                                </p>
+                                <div class="stdin-header-row">
+                                    <h2 class="accent">Standard IN / User Input</h2>
+                                    <i id="stdin-info-btn" class="fa-solid fa-question-circle accent"></i>
+                                </div>
+                                <textarea id="stdin" placeholder="55"></textarea>
+                                <p id="stdin-disabled" style="color:rgb(236, 236, 236);">
+                                    You don't have uesr-input (stdin) enabled, but you can
+                                    enable it in the Settings pane.
+                                </p>
+                            </div>
                         </div>
                         <div id="terminal-hide" class="no-term">
                             <i class="color fa-solid fa-exclamation-triangle"></i>
@@ -252,6 +277,14 @@
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 <script type="module" src="src/js/main.js"></script>
 <script>
+    var editor = ace.edit("editor");
+    editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableLiveAutocompletion: true,
+        enableSnippets: true,
+        hScrollBarAlwaysVisible: false,
+        wrap: true
+    })
     var terminal = ace.edit("terminal");
     terminal.renderer.setShowGutter(false);
     terminal.renderer.setHighlightGutterLine(false);

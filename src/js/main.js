@@ -33,10 +33,19 @@ if (document.getElementsByClassName("code.html")[0]) {
     document.getElementById("myInput").addEventListener('keyup', () => { toolbar.search("input") });
     document.getElementById("theme-btn").onclick = function () { toolbar.toggleSetting("theme") };
     document.getElementById("input-toggle").addEventListener('click', () => {
-        console.log("input changed");
+        console.log("toggle");
+        toolbar.allowInput();
     });
     document.getElementById("toggle").addEventListener('click', () => {
         toolbar.toggleTheme();
+    });
+    document.getElementById("stdin-info-btn").addEventListener('click', () => {
+        document.getElementById("stdin-help").style.display = "flex";
+        document.getElementById("landing-info-cont").style.display = "none";
+    });
+    document.getElementById("close-info").addEventListener('click', () => {
+        document.getElementById("stdin-help").style.display = "none";
+        document.getElementById("landing-info-cont").style.display = "flex";
     });
     // wait for file upload
     // Tab Switching
@@ -83,6 +92,10 @@ if (document.getElementsByClassName("code.html")[0]) {
     });
     document.getElementById("copy").addEventListener('click', () => {
         toolbar.copyCode(tabs);
+    });
+    document.getElementById("editor-mode").addEventListener('click', () => {
+        toolbar.changeEditorMode();
+        document.getElementById("editor-mode").classList.add("clicked");
     });
     document.getElementById("rename-button").addEventListener('click', () => {
         tabfunc.changeTabName(tabs, document.getElementById("tab-rename").value);

@@ -22,6 +22,32 @@ export function copyCode(tabs) {
     animateLangChange("success");
 }
 
+export function allowInput() {
+    console.log(document.getElementById("stdin").style.display);
+    if (document.getElementById("stdin").style.display == "" || document.getElementById("stdin").style.display == "none") {
+        console.log("Allowing input");
+        document.getElementById("stdin-disabled").style.display = "none";
+        document.getElementById("stdin").style.display = "flex";
+        return;
+    }
+    document.getElementById("stdin").style.display = "none";
+    document.getElementById("stdin-disabled").style.display = "flex";
+    
+}
+
+export function changeEditorMode() {
+    var editor = ace.edit("editor");
+    if (!document.getElementById("editor-mode").classList.contains("clicked")) {
+        editor.setKeyboardHandler("ace/keyboard/vim");
+        document.getElementById("editor-mode").classList.add("clicked");
+        document.getElementById("vim-mode").innerHTML = "Normal Controls";
+    } else {
+        editor.setKeyboardHandler("ace/keyboard/vscode");
+        document.getElementById("editor-mode").classList.remove("clicked");
+        document.getElementById("vim-mode").innerHTML = "VIM Controls";
+    }
+}
+
 export function changeTabNamePopup(name) {
     document.getElementById("lang-change-text").innerHTML = "<i id='copy' class='fa-solid fa-copy'></i> Tab changed to " + name + "!";
     animateLangChange("success");

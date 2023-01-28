@@ -1,17 +1,59 @@
 import { changeLanguage, changeDoc } from "./toolbar.js"
 import { changeTabNamePopup } from "./toolbar.js"
 
+var extension_dict = {
+    "assembly": "asm",
+    "clojure": "clj",
+    "cpp": "cpp",
+    "css": "css",
+    "elixir": "ex",
+    "erlang": "erl",
+    "go": "go",
+    "haskell": "hs",
+    "html": "html",
+    "java": "java",
+    "javascript": "js",
+    "kotlin": "kt",
+    "objective-c": "m",
+    "perl": "pl",
+    "php": "php",
+    "python": "py",
+    "ruby": "rb",
+    "rust": "rs",
+    "swift": "swift",
+    "typescript": "ts"
+};
+
+var languageComments = {
+    "assembly": "//",
+    "clojure": ";",
+    "cpp": "//",
+    "css": "/*",
+    "elixir": "#",
+    "erlang": "%",
+    "go": "//",
+    "haskell": "--",
+    "html": "<!--",
+    "java": "//",
+    "javascript": "//",
+    "kotlin": "//",
+    "objective-c": "//",
+    "perl": "#",
+    "php": "//",
+    "python": "#",
+    "ruby": "#",
+    "rust": "//",
+    "swift": "//",
+    "typescript": "//"
+};
+
 export class Tab {
     constructor(id, name, extension) {
         this.id = id;
         this.name = name;
         this.extension = extension;
         this.selected = false;
-        this.session = ace.createEditSession("// Edit Session " + name);
-        this.session.setOptions({
-            enableLiveAutocompletion: true,
-            wrap: true
-        })
+        this.session = ace.createEditSession( languageComments[Object.keys(extension_dict).find(key => extension_dict[key] === extension)]+" Edit Session " + name);
         this.createTab();
     }
 
@@ -98,28 +140,6 @@ export class Tab {
 }
 
 export function createNewTab(tabs) {
-    var extension_dict = {
-        "assembly": "asm",
-        "clojure": "clj",
-        "cpp": "cpp",
-        "css": "css",
-        "elixir": "ex",
-        "erlang": "erl",
-        "go": "go",
-        "haskell": "hs",
-        "html": "html",
-        "java": "java",
-        "javascript": "js",
-        "kotlin": "kt",
-        "objective-c": "m",
-        "perl": "pl",
-        "php": "php",
-        "python": "py",
-        "ruby": "rb",
-        "rust": "rs",
-        "swift": "swift",
-        "typescript": "ts"
-    };
     var extension = extension_dict[localStorage.getItem("language").toLowerCase()];
     if (extension == null) { extension = "js" }
     var tab = new Tab((tabs.length + 1), "file_" + (tabs.length + 1), extension);
