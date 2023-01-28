@@ -66,6 +66,10 @@ export function compile(tabs) {
             document.getElementById("compile-success").style.display = "flex";
             document.getElementById("compile-status-text").innerHTML = "Compilation Successful";
             document.getElementById("compile-status-text").className = "compile-success-text";
+            var stats = document.getElementById("code-stats");
+            stats.innerHTML = 'Your code executed in <span class="accent">' + jsonGetSolution.time + ' seconds</span> and used <span class="accent">' + jsonGetSolution.memory + ' bytes</span> of memory.';
+            var terminal = ace.edit("terminal");
+            terminal.setValue("▶ user.io@shell: ~$ Code Executed! Here is the output:\n" + output + "\n▶ user.io@shell: ~$");
             console.log(`Results :\n${output}\nExecution Time : ${jsonGetSolution.time} Secs\nMemory used : ${jsonGetSolution.memory} bytes`);
         } else if (jsonGetSolution.stderr) {
             const error = atob(jsonGetSolution.stderr);
@@ -73,6 +77,8 @@ export function compile(tabs) {
             document.getElementById("compile-error").style.display = "flex";
             document.getElementById("compile-status-text").innerHTML = "Compilation Failed";
             document.getElementById("compile-status-text").className = "compile-error-text";
+            var stats = document.getElementById("code-stats");
+            stats.innerHTML = 'Your code failed to execute. Check the console for more details. This may be due to a syntax error or a runtime error.'
             console.log(`\n Error :${error}`);
         } else {
             const compilation_error = atob(jsonGetSolution.compile_output);
@@ -80,6 +86,8 @@ export function compile(tabs) {
             document.getElementById("compile-error").style.display = "flex";
             document.getElementById("compile-status-text").className = "compile-error-text";
             document.getElementById("compile-status-text").innerHTML = "Compilation Failed";
+            var stats = document.getElementById("code-stats");
+            stats.innerHTML = '<span class="color">codebook.dev</span> compiler failed to understand your code. Did you submit valid code for the selected language? If you are still having issues please visit our <a href="https://www.codebook.dev/docs/index.html"><span class="accent">Docs</span></a> for more support.'
             console.log(`\n Error :${compilation_error}`);
         }
     };
@@ -87,7 +95,7 @@ export function compile(tabs) {
 }
 
 export function initialize() {
-    if (localStorage.length != 0) {
+    if (localStorage.length > 1 && localStorage.getItem("name")) {
         // restore all tabs from local storage
         encrpytConnection(true);
         toolbar.toggleTheme();
@@ -97,7 +105,7 @@ export function initialize() {
     }
     // grab first name from netlify identity
     //var name = netlifyIdentity.currentUser().user_metadata.full_name.split(" ")[0];
-    //document.getElementById("hey-there-code").innerHTML = "Hey " + name + "!<i class='fa-solid fa-hands-clapping'></i></i>";
+    document.getElementById("hey-there-code").innerHTML = "Hey " + localStorage.getItem("name") + "!<i class='fa-solid fa-hands-clapping'></i></i>";
 }
 
 export function encrpytConnection(previousVisitor) {

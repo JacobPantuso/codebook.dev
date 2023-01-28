@@ -48,6 +48,12 @@
     display: flex;
     flex-direction: row;
     color: white;
+    align-items: center;
+    gap: 10px;
+}
+
+.settings-row.input-text-setting {
+    gap: 30px;
 }
 
 .font-size {
@@ -57,6 +63,33 @@
     flex-direction: row;
     gap: 10px;
     align-items: center;
+}
+
+.rename-col h5 {
+    margin: 0;
+}
+
+.rename-text-area-row {
+    display: flex;
+    text-align: center;
+    gap: 4px;
+}
+
+.rename-col button {
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.rename-col button:hover {
+    background-color: #3f85d1;
+}
+
+.rename-col input {
+    background-color: transparent;
+    border-top: none; border-left: none; border-right: none;
+    text-align: center;
+    color: white;
 }
 
 .action:hover {
@@ -108,4 +141,75 @@
 
 .bottom-esc {
     font-size: 12px;
+}
+
+.input-toggle {
+    display: flex;
+    justify-content: center;
+}
+
+.input-toggle input[type=checkbox] {
+	display: none;
+}
+
+.input-toggle label {
+	background-color: #777;
+	border: 2px solid #555;
+	border-radius: 50px;
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: all ease-in-out 0.3s;
+	width: 50px;
+	height: 20px;
+}
+
+.input-toggle label::after {
+	background-color: #555;
+	border-radius: 50%;
+	content: ' ';
+	cursor: pointer;
+	display: inline-block;
+	position: absolute;
+	left: 2px;
+    top: 1px;
+	transition: all ease-in-out 0.3s;
+	width: 18px;
+	height: 18px;
+}
+
+.input-toggle label::before {
+	content: "\f00d";
+    font: var(--fa-font-solid);
+    color: rgb(54, 54, 54);
+	cursor: pointer;
+	display: inline-block;
+	position: absolute;
+    right: 5px;
+    top: 1px;
+	width: 18px;
+	height: 18px;
+}
+
+.input-toggle input[type=checkbox]:checked ~ label {
+	background-color: #ffffff;
+    border-color: #0054B0;
+}
+
+.input-toggle input[type=checkbox]:checked ~ label::after {
+	background-color: #0054B0;
+	transform: translateX(28px);
+}
+
+.input-toggle input[type=checkbox]:checked ~ label::before {
+    content: "\f11c";
+    color: black;
+    left: 7px;
+    top: 3px;
+    font: var(--fa-font-solid);
+    font-size: 15px;
+}
+
+.card-content h5 {
+    margin: 8px 0;
 }

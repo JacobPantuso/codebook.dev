@@ -129,6 +129,7 @@ p {
 .check-container-content {
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 .check-container p {
@@ -768,4 +769,62 @@ button.selectedtab {
     .landing-page-container {
         flex-direction: column;
     }
+}
+
+.editor-container {
+    display: flex;
+    height: 100%;
+}
+
+.overlay-code {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    opacity: 0.95;
+    z-index: 5;
+    background-color: #343434;
+}
+
+.overlay-code i {
+    font-size: 50px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.inner-text {
+    text-align: center;
+    width: 50%;
+}
+
+.btn-confirm {
+    background-color: transparent;
+    border: 2px solid #b00f00;
+    padding: 5px 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+/* animate btn-confirm to fill in red and round borders on hover */
+.btn-confirm:hover {
+    background-color: #b00f00;
+    border-radius: 5px;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    border: 2px solid #00b00f;
+    padding: 5px 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+/* animate btn-confirm to fill in red and round borders on hover */
+.btn-cancel:hover {
+    background-color: #00b00f;
+    border-radius: 5px;
 }

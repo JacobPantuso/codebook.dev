@@ -29,20 +29,16 @@ if (document.getElementsByClassName("code.html")[0]) {
         localStorage.setItem("fontSize", document.getElementById("font-size").innerHTML);
     });
     document.getElementById("settings-btn").addEventListener('click', () => { toolbar.toggleSetting("settings") });
-    document.getElementById("info-popup").addEventListener('click', () => { toolbar.hideInfoPopup() });
     document.getElementById("lang-btn").addEventListener('click', () => { toolbar.toggleSetting("language") });
     document.getElementById("myInput").addEventListener('keyup', () => { toolbar.search("input") });
-    document.getElementById("cpp").addEventListener('click', () => { toolbar.changeLanguage("cpp", "false") });
-    document.getElementById("java").addEventListener('click', () => { toolbar.changeLanguage("java", "false") });
-    document.getElementById("python").addEventListener('click', () => { toolbar.changeLanguage("python", "false") });
-    document.getElementById("swift").addEventListener('click', () => { toolbar.changeLanguage("swift", "false") });
-    document.getElementById("html").addEventListener('click', () => { toolbar.changeLanguage("HTML", "false") });
-    document.getElementById("css").addEventListener('click', () => { toolbar.changeLanguage("CSS", "false") });
-    document.getElementById("javascript").addEventListener('click', () => { toolbar.changeLanguage("JavaScript", "false") });
     document.getElementById("theme-btn").onclick = function () { toolbar.toggleSetting("theme") };
+    document.getElementById("input-toggle").addEventListener('click', () => {
+        console.log("input changed");
+    });
     document.getElementById("toggle").addEventListener('click', () => {
         toolbar.toggleTheme();
     });
+    // wait for file upload
     // Tab Switching
     var tabs = [];
     tabfunc.createNewTab(tabs);
@@ -51,12 +47,54 @@ if (document.getElementsByClassName("code.html")[0]) {
         tabfunc.createNewTab(tabs);
     });
     //
+    document.getElementById("assembly").addEventListener('click', () => { toolbar.changeLanguage("assembly", "false", tabs) });
+    document.getElementById("clojure").addEventListener('click', () => { toolbar.changeLanguage("clojure", "false", tabs) });
+    document.getElementById("cpp").addEventListener('click', () => { toolbar.changeLanguage("cpp", "false", tabs) });
+    document.getElementById("elixir").addEventListener('click', () => { toolbar.changeLanguage("elixir", "false", tabs) });
+    document.getElementById("erlang").addEventListener('click', () => { toolbar.changeLanguage("erlang", "false", tabs) });
+    document.getElementById("go").addEventListener('click', () => { toolbar.changeLanguage("go", "false", tabs) });
+    document.getElementById("haskell").addEventListener('click', () => { toolbar.changeLanguage("haskell", "false", tabs) });
+    document.getElementById("java").addEventListener('click', () => { toolbar.changeLanguage("java", "false", tabs) });
+    document.getElementById("python").addEventListener('click', () => { toolbar.changeLanguage("python", "false", tabs) });
+    document.getElementById("kotlin").addEventListener('click', () => { toolbar.changeLanguage("kotlin", "false", tabs) });
+    document.getElementById("lisp").addEventListener('click', () => { toolbar.changeLanguage("lisp", "false", tabs) });
+    document.getElementById("objective-c").addEventListener('click', () => { toolbar.changeLanguage("objective-c", "false", tabs) });
+    document.getElementById("perl").addEventListener('click', () => { toolbar.changeLanguage("perl", "false", tabs) });
+    document.getElementById("php").addEventListener('click', () => { toolbar.changeLanguage("php", "false", tabs) });
+    document.getElementById("ruby").addEventListener('click', () => { toolbar.changeLanguage("ruby", "false", tabs) });
+    document.getElementById("rust").addEventListener('click', () => { toolbar.changeLanguage("rust", "false", tabs) });
+    document.getElementById("typescript").addEventListener('click', () => { toolbar.changeLanguage("typescript", "false", tabs) });
+    document.getElementById("swift").addEventListener('click', () => { toolbar.changeLanguage("swift", "false", tabs) });
+    document.getElementById("html").addEventListener('click', () => { toolbar.changeLanguage("HTML", "false", tabs) });
+    document.getElementById("css").addEventListener('click', () => { toolbar.changeLanguage("CSS", "false", tabs) });
+    document.getElementById("javascript").addEventListener('click', () => { toolbar.changeLanguage("JavaScript", "false", tabs) });
+    document.getElementById("close-tab-cancel").addEventListener('click', () => {
+        document.getElementById("close-tab-warning").style.display = "none";
+    });
+    document.getElementById("close-tab-confirm").addEventListener('click', () => {
+        tabfunc.closeTab(tabfunc.getCurrentTab(tabs).getId(), tabs, "confirm");
+        document.getElementById("close-tab-warning").style.display = "none";
+    });
+    document.getElementById("import-code").addEventListener('change', () => {
+        toolbar.uploadFile(tabs);
+    });
+    document.getElementById("save").addEventListener('click', () => {
+        toolbar.saveFile(tabs);
+    });
+    document.getElementById("copy").addEventListener('click', () => {
+        toolbar.copyCode(tabs);
+    });
+    document.getElementById("rename-button").addEventListener('click', () => {
+        tabfunc.changeTabName(tabs, document.getElementById("tab-rename").value);
+        document.getElementById("tab-rename").value = "";
+    });
 }
 
 
 if (window.location.href.match('login.html') != null) {
     var urlParams = new URLSearchParams(window.location.search);
     var display = urlParams.get('name');
+    localStorage.setItem("name", display);
     document.getElementById("name").innerHTML = "Hey, " + display + " 👋🏼";
 }
 

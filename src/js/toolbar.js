@@ -6,6 +6,27 @@ document.body.addEventListener('keyup', function (e) {
     }
 });
 
+export function uploadFile(tabs) {
+    var reader = new FileReader();
+    reader.addEventListener('load', function () {
+        tab.createNewTab(tabs)
+        tab.getCurrentTab(tabs).getSession().setValue(reader.result);
+    });
+    reader.readAsText(document.getElementById('import-code').files[0]);
+}
+
+export function copyCode(tabs) {
+    var currentTab = tab.getCurrentTab(tabs).getSession().getValue();
+    navigator.clipboard.writeText(currentTab);
+    document.getElementById("lang-change-text").innerHTML = "<i id='copy' class='fa-solid fa-copy'></i> Copied to Clipboard";
+    animateLangChange("success");
+}
+
+export function changeTabNamePopup(name) {
+    document.getElementById("lang-change-text").innerHTML = "<i id='copy' class='fa-solid fa-copy'></i> Tab changed to " + name + "!";
+    animateLangChange("success");
+}
+
 export function hideSetting() {
     // this function is a helper function to hide other cards if a new one is trying to be opened
     var arr = ["settings", "language", "theme"];
@@ -179,6 +200,7 @@ export function changeFontSize(operation, amount) {
 }
 
 export function changeDoc(name) {
+    console.log("Changing doc to " + name);
     var langdoc = document.getElementById("lang-doc");
     var langicon = document.getElementById("lang-icon");
     var doc = new Object();
@@ -191,18 +213,23 @@ export function changeDoc(name) {
         "javascript": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
         "swift": "https://www.swift.org/documentation/"
     };
-    if (name == "HTML" || name == "CSS") {
+    if (name.toLowerCase() == "html" || name.toLowerCase() == "css") {
         tab.disableCompilation(name);
     } else {
+        console.log("Enabling compilation");
         tab.enableCompilation();
     }
     langdoc.href = doc[name.toLowerCase()];
     var selected = document.getElementById("selected-lang");
+    if (name == "c_cpp") {
+        langicon.src = "images/icons/cpp.svg";
+        return;
+    }
     langicon.src = "images/icons/" + name + ".svg";
 }
 
 // Change Selected Language
-export function changeLanguage(selection, tabChange) {
+export function changeLanguage(selection, tabChange, tabs) {
     var language = document.getElementById("language");
     var currLang = document.getElementById("selected-lang");
     var icon = document.getElementById("nav-language");
@@ -217,24 +244,65 @@ export function changeLanguage(selection, tabChange) {
     text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to ' + selection;
     var lang = new Object();
     var lang = {
+        "assembly": "ace/mode/assembly_x86",
+        "clojure": "ace/mode/clojure",
         "cpp": "ace/mode/c_cpp",
         "css": "ace/mode/css",
+        "elixir": "ace/mode/elixir",
+        "erlang": "ace/mode/erlang",
+        "go": "ace/mode/golang",
+        "haskell": "ace/mode/haskell",
         "html": "ace/mode/html",
         "java": "ace/mode/java",
         "javascript": "ace/mode/javascript",
+        "kotlin": "ace/mode/kotlin",
+        "objective-c": "ace/mode/objectivec",
+        "perl": "ace/mode/perl",
+        "php": "ace/mode/php",
         "python": "ace/mode/python",
-        "swift": "ace/mode/swift"
+        "ruby": "ace/mode/ruby",
+        "rust": "ace/mode/rust",
+        "swift": "ace/mode/swift",
+        "typescript": "ace/mode/typescript"
+    };
+    var extension = new Object();
+    var extension = {
+        "assembly": "asm",
+        "clojure": "clj",
+        "cpp": "cpp",
+        "css": "css",
+        "elixir": "ex",
+        "erlang": "erl",
+        "go": "go",
+        "haskell": "hs",
+        "html": "html",
+        "java": "java",
+        "javascript": "js",
+        "kotlin": "kt",
+        "objective-c": "m",
+        "perl": "pl",
+        "php": "php",
+        "python": "py",
+        "ruby": "rb",
+        "rust": "rs",
+        "swift": "swift",
+        "typescript": "ts"
     };
     if (selection == "HTML" || selection == "CSS") {
         tab.disableCompilation(selection);
     } else {
         tab.enableCompilation();
     }
+    if (tab.getCurrentTab(tabs) == undefined) {
+        return;
+    }
     if (selection == "cpp") {
         currLang.innerHTML = "C++";
         text.innerHTML = '<i class="fa-solid fa-retweet"></i> Language Changed to C++';
     }
+    console.log("Changing language to " + selection);
     changeDoc(selection);
+    tab.getCurrentTab(tabs).setExtension(extension[selection.toLowerCase()]);
     editor.session.setMode(lang[selection.toLowerCase()]);
     localStorage.setItem("language", selection);
     language.style.display = "none";

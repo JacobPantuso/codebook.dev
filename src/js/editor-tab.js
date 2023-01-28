@@ -1,15 +1,16 @@
-import { changeLanguage } from "./toolbar.js"
-ace.require("ace/ext/language_tools");
+import { changeLanguage, changeDoc } from "./toolbar.js"
+import { changeTabNamePopup } from "./toolbar.js"
 
 export class Tab {
-    constructor(id, name) {
+    constructor(id, name, extension) {
         this.id = id;
         this.name = name;
-        this.extension = "js";
+        this.extension = extension;
         this.selected = false;
         this.session = ace.createEditSession("// Edit Session " + name);
         this.session.setOptions({
-            enableLiveAutocompletion : true
+            enableLiveAutocompletion: true,
+            wrap: true
         })
         this.createTab();
     }
@@ -22,12 +23,20 @@ export class Tab {
         tabList.appendChild(el);
     }
 
-    changeName(name) {
+    setName(name) {
         this.name = name;
+        document.getElementById(this.id).innerHTML = name + '.' + this.extension;
+        document.getElementById("tab-rename").placeholder = this.name;
+        changeTabNamePopup(name);
     }
 
     changeLanguage(language) {
         this.language = language;
+    }
+
+    setExtension(extension) {
+        this.extension = extension;
+        document.getElementById(this.id).innerHTML = this.name + '.' + this.extension;
     }
 
     changeTab(tabs) {
@@ -41,13 +50,14 @@ export class Tab {
                 }
             }
             this.getElem().classList.add("selectedtab");
+            document.getElementById("tab-rename").placeholder = this.name;
             this.selected = true;
             // Change the Sesssion of the Ace Editor
             var editor = ace.edit("editor");
             editor.setSession(this.session);
-
             var lang = editor.session.$modeId;
             var langName = lang.split("/").pop();
+            changeDoc(langName);
             if (langName == "c_cpp") {
                 langName = "cpp";
             }
@@ -88,23 +98,55 @@ export class Tab {
 }
 
 export function createNewTab(tabs) {
-    var tab = new Tab((tabs.length + 1), "file_" + (tabs.length + 1));
+    var extension_dict = {
+        "assembly": "asm",
+        "clojure": "clj",
+        "cpp": "cpp",
+        "css": "css",
+        "elixir": "ex",
+        "erlang": "erl",
+        "go": "go",
+        "haskell": "hs",
+        "html": "html",
+        "java": "java",
+        "javascript": "js",
+        "kotlin": "kt",
+        "objective-c": "m",
+        "perl": "pl",
+        "php": "php",
+        "python": "py",
+        "ruby": "rb",
+        "rust": "rs",
+        "swift": "swift",
+        "typescript": "ts"
+    };
+    var extension = extension_dict[localStorage.getItem("language").toLowerCase()];
+    if (extension == null) { extension = "js" }
+    var tab = new Tab((tabs.length + 1), "file_" + (tabs.length + 1), extension);
     tab.getTab().addEventListener("click", function () {
         tab.changeTab(tabs)
     });
     document.getElementById("close-" + tab.getId()).addEventListener("click", function () {
-        closeTab(tab.getId(), tabs);
+        closeTab(tab.getId(), tabs, "cancel");
     });
     tab.getElem
     tabs.push(tab);
     tab.changeTab(tabs);
-    changeLanguage("javascript", "true")
+    if (localStorage.getItem("language") == null) {
+        localStorage.setItem("language", "JavaScript");
+    }
+    changeLanguage(localStorage.getItem("language"), "true", tabs);
+    document.getElementById("tab-rename").placeholder = tab.getName();
 }
 
-export function closeTab(id, tabs) {
+export function closeTab(id, tabs, type) {
     console.log("Closing Tab " + id);
+    var tabToClose = getTabById(id, tabs);
+    if (tabToClose.getSession().getValue() != "" && type != "confirm") {
+        document.getElementById("close-tab-warning").style.display = "flex";
+        return
+    }
     var tab = null;
-
     for (var index in tabs) {
         if (tabs[index].getId() == id) {
             tab = tabs[index];
@@ -120,10 +162,11 @@ export function closeTab(id, tabs) {
     tabs[0].changeTab(tabs);
 }
 
-function changeTabName(id, text) {
-    var currTab = document.getElementById(id);
-    currTab.innerHTML = String(text);
-    changeTabExtension();
+export function changeTabName(tabs, name) {
+    var currTab = getCurrentTab(tabs);
+    if (currTab != null) {
+        currTab.setName(name);
+    }
 }
 
 function changeTabExtension(id) {
@@ -137,8 +180,8 @@ function changeTabExtension(id) {
     currTab.innerHTML = "<span onclick=\"changeTab(\'" + id + "\')\">file_" + id + "." + language.toLowerCase() + "</span><a onclick=\"closeTab(\'" + id + "\')\"><i class=\"fa-solid fa-xmark tab-close-icon\"></i></a>";
 }
 
-function getTabById(id) {
-    for (index in tabs) {
+function getTabById(id, tabs) {
+    for (var index in tabs) {
         if (tabs[index].getId() == id) {
             return tabs[index];
         }
@@ -152,7 +195,7 @@ export function disableCompilation(language) {
     var disabledLang = document.getElementById("disabled-lang");
     run_btn.classList.add("disabled");
     terminal.style.display = "none";
-    disabledLang.innerHTML = language;
+    disabledLang.innerHTML = language.toUpperCase();
     termHide.style.display = "flex";
 }
 
@@ -167,7 +210,7 @@ export function enableCompilation() {
 
 export function getCurrentTab(tabs) {
     for (var index in tabs) {
-        if (tabs[index].isSelected) {
+        if (tabs[index].isSelected()) {
             return tabs[index];
         }
     }
