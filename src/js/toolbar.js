@@ -13,6 +13,7 @@ export function uploadFile(tabs) {
         tab.getCurrentTab(tabs).getSession().setValue(reader.result);
     });
     reader.readAsText(document.getElementById('import-code').files[0]);
+    hideSetting();
 }
 
 export function copyCode(tabs) {
@@ -328,6 +329,7 @@ export function changeLanguage(selection, tabChange, tabs) {
     }
     console.log("Changing language to " + selection);
     changeDoc(selection);
+    tab.getCurrentTab(tabs).changeLanguage(selection);
     tab.getCurrentTab(tabs).setExtension(extension[selection.toLowerCase()]);
     editor.session.setMode(lang[selection.toLowerCase()]);
     localStorage.setItem("language", selection);

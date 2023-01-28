@@ -2,11 +2,37 @@ import * as toolbar from "./toolbar.js";
 import * as tabFunc from "./editor-tab.js";
 import API_KEY from "./api.js";
 
+// language to id from supported langs
+var languageToId = new Object();
+var languageToId = {
+    "assembly": "45",
+    "clojure": "86",
+    "cpp": "76",
+    "elixir": "57",
+    "erlang": "58",
+    "go": "22",
+    "haskell": "61",
+    "java": "26",
+    "javascript": "63",
+    "kotlin": "78",
+    "objective-c": "79",
+    "perl": "85",
+    "php": "68",
+    "python": "71",
+    "ruby": "72",
+    "rust": "73",
+    "swift": "83",
+    "typescript": "74"
+};
+
 export function compile(tabs) {
     var currTab = tabFunc.getCurrentTab(tabs);
     var code = currTab.getSession().getValue();
     console.log(code);
     var input = document.getElementById("stdin").value;
+    var language = currTab.getLanguage();
+    language = language.toLowerCase();
+    console.log(languageToId[language])
     document.getElementById("code-compile-status").style.display = "flex";
     document.getElementById("compile-loader").style.display = "flex";
     document.getElementById("compile-success").style.display = "none";
@@ -28,7 +54,7 @@ export function compile(tabs) {
                 body: JSON.stringify({
                     source_code: code,
                     stdin: input,
-                    language_id: '71',
+                    language_id: languageToId[language],
                 }),
             }
         );
@@ -94,20 +120,6 @@ export function compile(tabs) {
             terminal.setValue("▶ user.io@shell: ~$\n" + compilation_error + "\n▶ user.io@shell: ~$");
             console.log(`\n Error :${compilation_error}`);
         }
-        // delete the submission
-        const deleteSubmission = await fetch(
-            `https://judge0-ce.p.rapidapi.com/submissions/${jsonResponse.token}`,
-            {
-                method: "DELETE",
-                headers: {
-                    "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
-                    "x-rapidapi-key": API_KEY, // Get yours for free at https://rapidapi.com/judge0-official/api/judge0-ce/
-                    "content-type": "application/json",
-                },
-            }
-        );
-        console.log("Submission Deleted");
-        deleteSubmission();
     };
     submit();
 }

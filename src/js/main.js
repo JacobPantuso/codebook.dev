@@ -80,6 +80,12 @@ if (document.getElementsByClassName("code.html")[0]) {
     document.getElementById("close-tab-cancel").addEventListener('click', () => {
         document.getElementById("close-tab-warning").style.display = "none";
     });
+    document.getElementById("reset-compiler").addEventListener('click', () => {
+        var terminal = ace.edit("terminal");
+        terminal.setValue("▶ user.io@shell: ~$");
+        document.getElementById("lang-change-text").innerHTML = "<i id='copy' class='fa-solid fa-trash'></i> Compiler Reset";
+        toolbar.animateLangChange("success");
+    });
     document.getElementById("close-tab-confirm").addEventListener('click', () => {
         tabfunc.closeTab(tabfunc.getCurrentTab(tabs).getId(), tabs, "confirm");
         document.getElementById("close-tab-warning").style.display = "none";
@@ -97,6 +103,7 @@ if (document.getElementsByClassName("code.html")[0]) {
         toolbar.changeEditorMode();
         document.getElementById("editor-mode").classList.add("clicked");
     });
+    document.getElementById
     document.getElementById("rename-button").addEventListener('click', () => {
         tabfunc.changeTabName(tabs, document.getElementById("tab-rename").value);
         document.getElementById("tab-rename").value = "";

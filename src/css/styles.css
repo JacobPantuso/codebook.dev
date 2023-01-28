@@ -909,4 +909,6 @@ button.selectedtab {
     margin: auto;
 }
 
-/* Editor Styling for Find-Repalce */
+#reset-compiler:hover {
+    color: red;
+}

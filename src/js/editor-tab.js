@@ -53,7 +53,8 @@ export class Tab {
         this.name = name;
         this.extension = extension;
         this.selected = false;
-        this.session = ace.createEditSession( languageComments[Object.keys(extension_dict).find(key => extension_dict[key] === extension)]+" Edit Session " + name);
+        this.setlanguage = Object.keys(extension_dict).find(key => extension_dict[key] === extension);
+        this.session = ace.createEditSession(languageComments[Object.keys(extension_dict).find(key => extension_dict[key] === extension)]+" Edit Session " + name);
         this.createTab();
     }
 
@@ -74,6 +75,7 @@ export class Tab {
 
     changeLanguage(language) {
         this.language = language;
+        this.setlanguage = language;
     }
 
     setExtension(extension) {
@@ -120,6 +122,10 @@ export class Tab {
 
     getName() {
         return this.name;
+    }
+
+    getLanguage() {
+        return this.setlanguage;
     }
 
     getExtension() {
