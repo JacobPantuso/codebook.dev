@@ -146,8 +146,9 @@ export class Tab {
 }
 
 export function createNewTab(tabs) {
-    var extension = extension_dict[localStorage.getItem("language").toLowerCase()];
+    var extension = extension_dict[localStorage.getItem("language")];
     if (extension == null) { extension = "js" }
+    extension = extension.toLowerCase();
     var tab = new Tab((tabs.length + 1), "file_" + (tabs.length + 1), extension);
     tab.getTab().addEventListener("click", function () {
         tab.changeTab(tabs)
