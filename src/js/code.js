@@ -85,43 +85,35 @@ export function compile(tabs) {
                 jsonGetSolution = await getSolution.json();
             }
         }
-
+        
         if (jsonGetSolution.stdout) {
             const output = atob(jsonGetSolution.stdout);
             document.getElementById("compile-loader").style.display = "none";
             document.getElementById("compile-success").style.display = "flex";
             document.getElementById("compile-status-text").innerHTML = "Execution Successful";
             document.getElementById("compile-status-text").className = "compile-success-text";
-            var elem = document.getElementById("compile-bar");
-            var execWidth = jsonGetSolution.time * 100;
-            console.log(execWidth);
-            var width = 0;
-            var id = setInterval(timeFrame, 10);
-            function timeFrame() {
-                if (width >= execWidth) {
-                    clearInterval(id);
-                } else {
-                    width++;
-                    elem.style.width = width + "%";
-                }
-            }
-            var ramWidth = (jsonGetSolution.memory / 10000) * 100;
-            console.log(ramWidth);
-            var elem = document.getElementById("ram-bar");
-            var width = 1;
-            var id = setInterval(memoryFrame, 10);
-            function memoryFrame() {
-                if (width >= Math.round(ramWidth)) {
-                    clearInterval(id);
-                } else {
-                    console.log(width);
-                    width++;
-                    elem.style.width = width + "%";
-                }
-            }
             document.getElementById("compile-usage").innerHTML = jsonGetSolution.time;
             document.getElementById("ram-usage").innerHTML = jsonGetSolution.memory;
             var stats = document.getElementById("code-stats");
+            // gradually fill the progress bars
+            var time = jsonGetSolution.time * 100;
+            var compile_bar = document.getElementById("compile-bar").animate([
+                { width: '0%' },
+                { width: `${time}%` }
+            ], {
+                duration: 1000,
+                iterations: 1
+            });
+            document.getElementById("compile-bar").style.width = `${time}%`;
+            var ram = (jsonGetSolution.memory / 10000) * 100;
+            var ram_bar = document.getElementById("ram-bar").animate([
+                { width: '0%' },
+                { width: `${ram}%` }
+            ], {
+                duration: 1000,
+                iterations: 1
+            });
+            document.getElementById("ram-bar").style.width = `${ram}%`;
             stats.innerHTML = '';
             var terminal = ace.edit("terminal");
             terminal.setValue("▶ user.io@shell: ~$\n" + output + "\n▶ user.io@shell: ~$");
