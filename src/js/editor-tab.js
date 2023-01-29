@@ -47,9 +47,12 @@ var languageComments = {
     "typescript": "//"
 };
 
+var globalID = 0;
+
 export class Tab {
-    constructor(id, name, extension) {
-        this.id = id;
+    constructor(name, extension) {
+        globalID += 1;
+        this.id = globalID;
         this.name = name;
         this.extension = extension;
         this.selected = false;
@@ -149,7 +152,7 @@ export function createNewTab(tabs) {
     var extension = extension_dict[localStorage.getItem("language")];
     if (extension == null) { extension = "js" }
     extension = extension.toLowerCase();
-    var tab = new Tab((tabs.length + 1), "file_" + (tabs.length + 1), extension);
+    var tab = new Tab("file_" + globalID, extension);
     tab.getTab().addEventListener("click", function () {
         tab.changeTab(tabs)
     });

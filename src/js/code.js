@@ -92,8 +92,37 @@ export function compile(tabs) {
             document.getElementById("compile-success").style.display = "flex";
             document.getElementById("compile-status-text").innerHTML = "Execution Successful";
             document.getElementById("compile-status-text").className = "compile-success-text";
+            var elem = document.getElementById("compile-bar");
+            var execWidth = jsonGetSolution.time * 100;
+            console.log(execWidth);
+            var width = 0;
+            var id = setInterval(timeFrame, 10);
+            function timeFrame() {
+                if (width >= execWidth) {
+                    clearInterval(id);
+                } else {
+                    width++;
+                    elem.style.width = width + "%";
+                }
+            }
+            var ramWidth = (jsonGetSolution.memory / 10000) * 100;
+            console.log(ramWidth);
+            var elem = document.getElementById("ram-bar");
+            var width = 1;
+            var id = setInterval(memoryFrame, 10);
+            function memoryFrame() {
+                if (width >= Math.round(ramWidth)) {
+                    clearInterval(id);
+                } else {
+                    console.log(width);
+                    width++;
+                    elem.style.width = width + "%";
+                }
+            }
+            document.getElementById("compile-usage").innerHTML = jsonGetSolution.time;
+            document.getElementById("ram-usage").innerHTML = jsonGetSolution.memory;
             var stats = document.getElementById("code-stats");
-            stats.innerHTML = 'Your code executed in <span class="accent">' + jsonGetSolution.time + ' seconds</span> and used <span class="accent">' + jsonGetSolution.memory + ' bytes</span> of memory.';
+            stats.innerHTML = '';
             var terminal = ace.edit("terminal");
             terminal.setValue("▶ user.io@shell: ~$\n" + output + "\n▶ user.io@shell: ~$");
             console.log(`Results :\n${output}\nExecution Time : ${jsonGetSolution.time} Secs\nMemory used : ${jsonGetSolution.memory} bytes`);
