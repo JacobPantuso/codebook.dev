@@ -1,11 +1,71 @@
 html {
     font-family: 'JetBrains Mono';font-size: 18px;
-    overflow-x: hidden;
 }
 
 body {
     height: 100%;
     background-color: #242424;
+}
+
+/* Overlay */
+.overlay {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.789);
+    z-index: 1;
+}
+
+.overlay-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: white;
+    gap: 20px;
+}
+
+#close {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    color: red;
+    cursor: pointer;
+}
+
+.overlay-content h1 {
+    margin-bottom: 0px;
+}
+
+.overlay-content p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 30%;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+input {
+    background-color: transparent;
+    /* bottom border only */
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+}
+
+input:focus {
+    outline: none;
+    border-bottom: #00D1FF 1px solid;
+    transition: 0.5s ease-in-out;
 }
 
 .page-content {
@@ -71,6 +131,31 @@ body {
 .code-now-btn:hover {
     background-position: right center;
     transition: 0.5s;
+}
+
+.code-now-btn-form {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+    width: 130px;
+    font-weight: bold;
+    /* rainbow border */
+    background: linear-gradient(to right, #00A3FF 20%, #5E6CFF 40%, #C323FF 60%, #ff0080 80%);
+    background-size: 300% auto;
+    transition: ease-in-out 0.5s;
+}
+
+.code-now-btn-form.active {
+    background-position: right center;
+    transition: 0.5s;
+}
+
+.code-now-btn-form.active:hover {
+    border-radius: 20px;
 }
 
 .name {

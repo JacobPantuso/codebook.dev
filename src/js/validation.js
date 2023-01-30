@@ -10,9 +10,9 @@ export function checkSubmit() {
     var submit = document.getElementById("submit");
     if (name != "") {
         submit.removeAttribute("disabled");
-        submit.classList.add("enabled");
+        submit.classList.add("active");
     } else {
-        submit.classList.remove("enabled");
+        submit.classList.remove("active");
     }
 }
 
