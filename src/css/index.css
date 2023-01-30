@@ -1,5 +1,6 @@
 html {
     font-family: 'JetBrains Mono';font-size: 18px;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -13,13 +14,31 @@ body {
     z-index: 0;
 }
 
+#gray-wave {
+    position: relative;
+}
+
+#bottom-wave {
+    position: relative;
+    z-index: -1;
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    bottom: 0px;
+    color: white;
+    z-index: 10;
+}
 
 /* Overlay */
 .overlay {
     display: none;
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.789);
     z-index: 10;
 }
@@ -83,6 +102,7 @@ input:focus {
     width: 100%;
     height: 100%;
     display: flex;
+    position: relative;
     flex-direction: column;
 }
 
@@ -274,9 +294,12 @@ input:focus {
 .information-container {
     display: flex;
     flex-direction: column;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
     color: white;
-    background-color: #1d1d1d;
+    background-color: rgb(30, 30, 30);
+    margin-top: -20px;
     border-radius: 20px 20px 0px 0px;
 }
 
@@ -288,13 +311,29 @@ input:focus {
 .info-content {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    align-items: center;
+    width: 780px;
+    gap: 200px;
+}
+
+.info-content.right {
+    text-align: right;
+}
+
+#gray-wave-up {
+    rotate: 180deg;
 }
 
 .side-content {
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 350px;
+}
+
+.side-content p {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
 }
 
 .right-image {
@@ -303,6 +342,63 @@ input:focus {
 
 @keyframes cursor-blink {
     0% { opacity: 0; }
+}
+
+.get-started {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    text-align: center;
+    color: white;
+    gap: 10px;
+}
+
+.get-started h3 {
+    width: 250px;
+    margin-bottom: 0px;
+}
+
+.get-started p {
+    margin-top: 0px;
+    color: rgba(171, 171, 171, 1);
+}
+
+.bottom-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.bottom-row .learn-more {
+    color: white;
+    text-decoration: none;
+}
+
+.bottom-row .learn-more:hover {
+    color: #44A5EC;
+    /* underline */
+    transition: 0.5s ease;
+}
+
+/* slowly underline animation */
+@keyframes underline {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+.bottom-row .learn-more:hover::after {
+    content: '';
+    display: block;
+    width: 0%;
+    height: 2px;
+    background: #44A5EC;
+    animation: underline 0.5s ease forwards;
 }
 
 @media screen and (max-width: 1100px) {
@@ -318,3 +414,9 @@ input:focus {
     }
 }
 
+@media screen and (max-width: 800px) {
+    .title-cards {
+        align-items: center;
+        flex-direction: column;
+    }
+}

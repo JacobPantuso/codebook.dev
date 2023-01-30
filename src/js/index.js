@@ -10,9 +10,3 @@ document.getElementById("close").addEventListener("click", () => {
     document.getElementById("name-overlay").style.display = "none";
     document.getElementById("index-body").style.overflow = "auto";
 });
-
-// as the window shrinks the #wave will translate down 10px
-window.addEventListener("resize", () => {
-    var currentTop = document.getElementById("wave").style.marginTop;
-    document.getElementById("wave").style.marginTop = (parseInt(currentTop) + 5) + "px";
-});
