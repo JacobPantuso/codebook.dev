@@ -60,7 +60,6 @@ if (document.getElementsByClassName("code.html")[0]) {
     document.getElementById("clojure").addEventListener('click', () => { toolbar.changeLanguage("clojure", "false", tabs) });
     document.getElementById("cpp").addEventListener('click', () => { toolbar.changeLanguage("cpp", "false", tabs) });
     document.getElementById("elixir").addEventListener('click', () => { toolbar.changeLanguage("elixir", "false", tabs) });
-    document.getElementById("erlang").addEventListener('click', () => { toolbar.changeLanguage("erlang", "false", tabs) });
     document.getElementById("go").addEventListener('click', () => { toolbar.changeLanguage("go", "false", tabs) });
     document.getElementById("haskell").addEventListener('click', () => { toolbar.changeLanguage("haskell", "false", tabs) });
     document.getElementById("java").addEventListener('click', () => { toolbar.changeLanguage("java", "false", tabs) });
