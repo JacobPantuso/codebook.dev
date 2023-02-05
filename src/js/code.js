@@ -163,7 +163,7 @@ export function encrpytConnection(previousVisitor) {
     var scannerText = document.getElementById("scanner-text");
     var checkmark = document.getElementById("checkmark");
     var webpage = document.getElementById("webpage");
-    webpage.style.pointerEvents = "";
+    webpage.style.pointerEvents = "none";
     scannerText.innerHTML = "Verifying your browser before you can fully access <span class=\"color\">codebook.dev</span>";
     var scannerWindow = document.getElementById("scanner");
     // wait 2 seconds then change text in scannerText
