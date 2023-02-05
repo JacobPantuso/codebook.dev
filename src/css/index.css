@@ -298,7 +298,7 @@ input:focus {
     align-items: center;
     gap: 50px;
     color: white;
-    background-color: rgb(30, 30, 30);
+    background-color: rgb(31, 31, 31);
     margin-top: -20px;
     border-radius: 20px 20px 0px 0px;
 }
@@ -312,12 +312,24 @@ input:focus {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 780px;
+    justify-content: center;
+    width: 100vw;
     gap: 200px;
 }
 
 .info-content.right {
     text-align: right;
+}
+
+.info-content.right h3 {
+    display: flex;
+    width: 200px;
+    margin-left: auto;
+    text-align: right;
+}
+
+.info-content.first {
+    height: 500px;
 }
 
 #gray-wave-up {
@@ -411,6 +423,22 @@ input:focus {
     .title-cards {
         align-items: center;
         flex-direction: column;
+    }
+    .info-content img{
+        display: none;
+    }
+    .info-content.first {
+        height: auto;
+    }
+    .info-content.right {
+        text-align: center;
+    }
+    .info-content.right h3 {
+        margin: auto;
+        text-align: center;
+    }
+    .info-content {
+        text-align: center;
     }
 }
 
