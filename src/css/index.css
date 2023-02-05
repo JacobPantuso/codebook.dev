@@ -440,6 +440,12 @@ input:focus {
     .info-content {
         text-align: center;
     }
+    .images {
+        width: 350px;
+    }
+    .images img {
+        width: 80%;
+    }
 }
 
 @media screen and (max-width: 800px) {
@@ -451,9 +457,10 @@ input:focus {
 
 @media screen and (max-width: 700px) {
     .name {
-        font-size: 48px;
+        font-size: 32px;
     }
     .title-content h2 {
         font-size: 18px;
+        margin-top: none;
     }
 }
