@@ -6,6 +6,13 @@ document.body.addEventListener('keyup', function (e) {
     }
 });
 
+export function saveFile(tabs) {
+    var currentTab = tab.getCurrentTab(tabs).getSession().getValue();
+    var extension = tab.getCurrentTab(tabs).getExtension();
+    var blob = new Blob([currentTab], { type: "text/plain;charset=utf-8" });
+    saveAs(blob, 'code.' + extension);
+}
+
 export function uploadFile(tabs) {
     var reader = new FileReader();
     reader.addEventListener('load', function () {
@@ -304,6 +311,7 @@ export function changeLanguage(selection, tabChange, tabs) {
         "haskell": "hs",
         "html": "html",
         "java": "java",
+        "lisp": "lisp",
         "javascript": "js",
         "kotlin": "kt",
         "objective-c": "m",

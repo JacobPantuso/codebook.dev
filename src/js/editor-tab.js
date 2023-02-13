@@ -15,6 +15,7 @@ var extension_dict = {
     "javascript": "js",
     "kotlin": "kt",
     "objective-c": "m",
+    "lisp": "lisp",
     "perl": "pl",
     "php": "php",
     "python": "py",
@@ -65,7 +66,7 @@ export class Tab {
         var tabList = document.getElementById("tab-list");
         var el = document.createElement("button");
         el.id = "tab-" + this.id;
-        el.innerHTML = "<span id=\"" + this.id + "\">file_" + this.id + "." + this.extension + "</span><span class='spacer'></span><a id=\"close-" + this.id + "\"><i class=\"fa-solid fa-xmark tab-close-icon\"></i></a>";
+        el.innerHTML = "<span id=\"" + this.id + "\">main." + this.extension + "</span><span class='spacer'></span><a id=\"close-" + this.id + "\"><i class=\"fa-solid fa-xmark tab-close-icon\"></i></a>";
         tabList.appendChild(el);
     }
 
@@ -152,7 +153,7 @@ export function createNewTab(tabs) {
     var extension = extension_dict[localStorage.getItem("language")];
     if (extension == null) { extension = "js" }
     extension = extension.toLowerCase();
-    var tab = new Tab("file_" + globalID, extension);
+    var tab = new Tab("main", extension);
     tab.getTab().addEventListener("click", function () {
         tab.changeTab(tabs)
     });
